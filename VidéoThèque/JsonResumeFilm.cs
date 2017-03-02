@@ -14,7 +14,7 @@ namespace VidéoThèque
     {
         private string id;
         private RootObject ro;
-        private RootObjectFilms rof;
+        protected ObjetsDataGridView rof;
         /// <summary>
         /// Connexion à l'API pour afficher le résumé
         /// </summary>
@@ -59,28 +59,28 @@ namespace VidéoThèque
             ObjetsDataGridView odgv = new ObjetsDataGridView(ro.title.ToString(), ro.poster_path.ToString(), ro.tagline.ToString(), ro.original_title.ToString(), ro.release_date.ToString(), ro.runtime.ToString(), ro.vote_count.ToString(), ro.vote_average.ToString(), ro.budget.ToString(), ro.revenue.ToString(), ro.overview.ToString());
             return odgv;
         }
-
+        public List<RootObjectFilm> tttt = new List<RootObjectFilm>();
         public  void Serialisation(ObjetsDataGridView test)
         {
-            
             Deserialiser();
-            string s = JsonConvert.SerializeObject(test);
-            rof.list.Add(JsonConvert.DeserializeObject<List>(s));
-            string ecrire = JsonConvert.SerializeObject(rof);
-            StreamWriter sw = new StreamWriter(@"C:\Users\STAGIAIRE\Documents\Visual Studio 2015\Vid-oTh-que\VidéoThèque\Serialisation\filmsFavoris.json", false);
-            sw.Write(ecrire);
+            string s1 = JsonConvert.SerializeObject(test);
+            RootObjectFilm rrr = JsonConvert.DeserializeObject<RootObjectFilm>(s1);
+            tttt.Add(rrr);
+            StreamWriter sw = new StreamWriter(@".\Serialisation\filmsFavoris.json", true);
+            for (int i = 0; i < tttt.Count; i++)
+            {
+                sw.WriteLine(tttt[i]); 
+            }
             sw.Close();
-            
-            
         }
 
         public void Deserialiser()
         {
-            StreamReader sr = new StreamReader(@"C:\Users\STAGIAIRE\Documents\Visual Studio 2015\Vid-oTh-que\VidéoThèque\Serialisation\filmsFavoris.json");
+            StreamReader sr = new StreamReader(@".\Serialisation\filmsFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
-            rof = JsonConvert.DeserializeObject<RootObjectFilms>(json);
             
+            tttt = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
         }
       
         #region Objets Json désérialisation API
@@ -117,7 +117,7 @@ namespace VidéoThèque
 
         #region Objets Json sérialisation
 
-        public class List
+        public class RootObjectFilm
         {
             public object Nom { get; set; }
             public object Genre { get; set; }
@@ -146,11 +146,6 @@ namespace VidéoThèque
             public object MoyenneDesVotesSerie { get; set; }
             public object PosterSerie { get; set; }
             public object SynopsisSerie { get; set; }
-        }
-
-        public class RootObjectFilms
-        {
-            public List<List> list { get; set; }
         }
 
         #endregion

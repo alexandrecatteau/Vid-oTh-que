@@ -117,9 +117,9 @@ namespace VidéoThèque
             // labelAffichageTitre
             // 
             this.labelAffichageTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageTitre.Location = new System.Drawing.Point(297, 13);
+            this.labelAffichageTitre.Location = new System.Drawing.Point(295, 13);
             this.labelAffichageTitre.Name = "labelAffichageTitre";
-            this.labelAffichageTitre.Size = new System.Drawing.Size(496, 53);
+            this.labelAffichageTitre.Size = new System.Drawing.Size(370, 53);
             this.labelAffichageTitre.TabIndex = 1;
             this.labelAffichageTitre.Text = "labelAffichageTitre";
             this.labelAffichageTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -208,9 +208,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageSlogan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageSlogan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageSlogan.Location = new System.Drawing.Point(442, 70);
+            this.labelAffichageSlogan.Location = new System.Drawing.Point(440, 70);
             this.labelAffichageSlogan.Name = "labelAffichageSlogan";
-            this.labelAffichageSlogan.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageSlogan.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageSlogan.TabIndex = 17;
             this.labelAffichageSlogan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -218,9 +218,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageTitreOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageTitreOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageTitreOriginal.Location = new System.Drawing.Point(442, 98);
+            this.labelAffichageTitreOriginal.Location = new System.Drawing.Point(440, 98);
             this.labelAffichageTitreOriginal.Name = "labelAffichageTitreOriginal";
-            this.labelAffichageTitreOriginal.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageTitreOriginal.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageTitreOriginal.TabIndex = 16;
             this.labelAffichageTitreOriginal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -228,9 +228,9 @@ namespace VidéoThèque
             // 
             this.LabelAffichageDateDeSortie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LabelAffichageDateDeSortie.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelAffichageDateDeSortie.Location = new System.Drawing.Point(442, 126);
+            this.LabelAffichageDateDeSortie.Location = new System.Drawing.Point(440, 126);
             this.LabelAffichageDateDeSortie.Name = "LabelAffichageDateDeSortie";
-            this.LabelAffichageDateDeSortie.Size = new System.Drawing.Size(483, 28);
+            this.LabelAffichageDateDeSortie.Size = new System.Drawing.Size(411, 28);
             this.LabelAffichageDateDeSortie.TabIndex = 15;
             this.LabelAffichageDateDeSortie.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -238,9 +238,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageDuree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageDuree.Location = new System.Drawing.Point(442, 154);
+            this.labelAffichageDuree.Location = new System.Drawing.Point(440, 154);
             this.labelAffichageDuree.Name = "labelAffichageDuree";
-            this.labelAffichageDuree.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageDuree.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageDuree.TabIndex = 14;
             this.labelAffichageDuree.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -248,9 +248,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageNombreDeVotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageNombreDeVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageNombreDeVotes.Location = new System.Drawing.Point(442, 182);
+            this.labelAffichageNombreDeVotes.Location = new System.Drawing.Point(440, 182);
             this.labelAffichageNombreDeVotes.Name = "labelAffichageNombreDeVotes";
-            this.labelAffichageNombreDeVotes.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageNombreDeVotes.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageNombreDeVotes.TabIndex = 13;
             this.labelAffichageNombreDeVotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -258,9 +258,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageMoyenneDesNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageMoyenneDesNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageMoyenneDesNotes.Location = new System.Drawing.Point(442, 210);
+            this.labelAffichageMoyenneDesNotes.Location = new System.Drawing.Point(440, 210);
             this.labelAffichageMoyenneDesNotes.Name = "labelAffichageMoyenneDesNotes";
-            this.labelAffichageMoyenneDesNotes.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageMoyenneDesNotes.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageMoyenneDesNotes.TabIndex = 12;
             this.labelAffichageMoyenneDesNotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -268,9 +268,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageBudget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageBudget.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageBudget.Location = new System.Drawing.Point(442, 238);
+            this.labelAffichageBudget.Location = new System.Drawing.Point(440, 238);
             this.labelAffichageBudget.Name = "labelAffichageBudget";
-            this.labelAffichageBudget.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageBudget.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageBudget.TabIndex = 11;
             this.labelAffichageBudget.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -278,9 +278,9 @@ namespace VidéoThèque
             // 
             this.labelAffichageRevenue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageRevenue.Location = new System.Drawing.Point(442, 266);
+            this.labelAffichageRevenue.Location = new System.Drawing.Point(440, 266);
             this.labelAffichageRevenue.Name = "labelAffichageRevenue";
-            this.labelAffichageRevenue.Size = new System.Drawing.Size(483, 28);
+            this.labelAffichageRevenue.Size = new System.Drawing.Size(411, 28);
             this.labelAffichageRevenue.TabIndex = 10;
             this.labelAffichageRevenue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -288,17 +288,17 @@ namespace VidéoThèque
             // 
             this.labelAffichageSynopsis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelAffichageSynopsis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageSynopsis.Location = new System.Drawing.Point(301, 308);
+            this.labelAffichageSynopsis.Location = new System.Drawing.Point(299, 308);
             this.labelAffichageSynopsis.Name = "labelAffichageSynopsis";
-            this.labelAffichageSynopsis.Size = new System.Drawing.Size(624, 159);
+            this.labelAffichageSynopsis.Size = new System.Drawing.Size(552, 159);
             this.labelAffichageSynopsis.TabIndex = 18;
             this.labelAffichageSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BoutonAjouterAyxFavoris
             // 
-            this.BoutonAjouterAyxFavoris.Location = new System.Drawing.Point(800, 13);
+            this.BoutonAjouterAyxFavoris.Location = new System.Drawing.Point(671, 13);
             this.BoutonAjouterAyxFavoris.Name = "BoutonAjouterAyxFavoris";
-            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(125, 53);
+            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(180, 53);
             this.BoutonAjouterAyxFavoris.TabIndex = 19;
             this.BoutonAjouterAyxFavoris.Text = "Ajouter aux favoris";
             this.BoutonAjouterAyxFavoris.UseVisualStyleBackColor = true;
@@ -306,7 +306,7 @@ namespace VidéoThèque
             // 
             // AffichageResumeFilm
             // 
-            this.ClientSize = new System.Drawing.Size(939, 479);
+            this.ClientSize = new System.Drawing.Size(865, 479);
             this.Controls.Add(this.BoutonAjouterAyxFavoris);
             this.Controls.Add(this.labelAffichageSynopsis);
             this.Controls.Add(this.labelAffichageSlogan);
@@ -338,8 +338,10 @@ namespace VidéoThèque
             if (e.Button == MouseButtons.Left)
             {
                 JsonResumeFilm test = new JsonResumeFilm();
-                test.Serialisation(odgv); qsd
+                test.Serialisation(Odgv);
+                MessageBox.Show("\"" + Odgv.Nom1 + "\"" + " a bien était ajouté aux favoris");
             }
         }
+        
     }
 }

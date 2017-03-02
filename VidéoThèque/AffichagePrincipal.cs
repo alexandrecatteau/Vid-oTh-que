@@ -150,8 +150,6 @@ namespace VidéoThèque
                     couleurFont.BackColor = Color.White;
                     couleurText.ForeColor = Color.Black;
                 }
-                couleurFont.BackColor = Color.White;
-                couleurText.ForeColor = Color.Black;
                 couleurFont = e.Node;
                 couleurText = e.Node;
                 page = 1;
