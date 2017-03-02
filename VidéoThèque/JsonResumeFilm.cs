@@ -14,7 +14,6 @@ namespace VidéoThèque
     {
         private string id;
         private RootObject ro;
-        protected ObjetsDataGridView rof;
         /// <summary>
         /// Connexion à l'API pour afficher le résumé
         /// </summary>
@@ -59,6 +58,7 @@ namespace VidéoThèque
             ObjetsDataGridView odgv = new ObjetsDataGridView(ro.title.ToString(), ro.poster_path.ToString(), ro.tagline.ToString(), ro.original_title.ToString(), ro.release_date.ToString(), ro.runtime.ToString(), ro.vote_count.ToString(), ro.vote_average.ToString(), ro.budget.ToString(), ro.revenue.ToString(), ro.overview.ToString());
             return odgv;
         }
+
         public List<RootObjectFilm> tttt;
         public  void Serialisation(ObjetsDataGridView test)
         {

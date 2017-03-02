@@ -361,5 +361,11 @@ namespace VidéoThèque
             }
             //this.dataGridView1.ClearSelection();
         }
+
+        private void BoutonFavoris_Click(object sender, EventArgs e)
+        {
+            AffichageFavoris af = new AffichageFavoris();
+            af.ShowDialog();
+        }
     }
 }

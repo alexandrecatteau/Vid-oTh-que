@@ -268,6 +268,7 @@ namespace VidéoThèque
             {
                 JsonResumeSerie jsr = new JsonResumeSerie();
                 jsr.Serialisation(odgv);
+                MessageBox.Show("\"" + odgv.NomSerie + "\"" + " a bien était ajouté aux favoris");
             }
         }
     }

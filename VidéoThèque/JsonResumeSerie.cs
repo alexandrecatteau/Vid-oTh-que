@@ -82,7 +82,6 @@ namespace VidéoThèque
     {
         private string id;
         private RootObject ro;
-        private RootObjectFilms ros;
 
         public JsonResumeSerie()
         {
@@ -111,48 +110,34 @@ namespace VidéoThèque
                 ro.number_of_seasons.ToString(), enCoursDeProduction, ro.vote_count.ToString(), ro.vote_average.ToString(), ro.poster_path, ro.overview);
             return odgv;
         }
-
+        public List<RootObjectSerie> tttt;
         public void Serialisation(ObjetsDataGridView test)
         {
             Deserialiser();
-            if (ros.list != null)
+            string s1 = JsonConvert.SerializeObject(test);
+            RootObjectSerie rrr = JsonConvert.DeserializeObject<RootObjectSerie>(s1);
+            if (tttt == null)
             {
-                string s = JsonConvert.SerializeObject(test);
-                ros.list.Add(JsonConvert.DeserializeObject<List>(s));
-                string ecrire = JsonConvert.SerializeObject(ros);
-                StreamWriter sw = new StreamWriter(@".\Serialisation\seriesFavoris.json", false);
-                sw.Write(ecrire);
-                sw.Close();
+                tttt = new List<RootObjectSerie>();
             }
-            else
-            {
-                string s = JsonConvert.SerializeObject(test);
-                StreamWriter sw = new StreamWriter(@".\Serialisation\seriesFavoris.json", false);
-                sw.Write(s);
-                sw.Close();
-            }
-            
+            tttt.Add(rrr);
+            string s2 = JsonConvert.SerializeObject(tttt);
+            StreamWriter sw = new StreamWriter(@".\Serialisation\seriesFavoris.json", false);
+            sw.WriteLine(s2);
+            sw.Close();
         }
 
         public void Deserialiser()
         {
-
+            tttt = new List<RootObjectSerie>();
             StreamReader sr = new StreamReader(@".\Serialisation\seriesFavoris.json");
-            string test = sr.ReadToEnd();
-            Debug.Print(test);
+            string json = sr.ReadToEnd();
             sr.Close();
-            if (test == "{\"Nom\":null,\"Genre\":null,\"Vote\":null,\"MaxPage\":null,\"Popularite\":null,\"Slogan\":null,\"TitreOrigine\":null,\"DateDeSortie\":null,\"Duree\":null,\"NombreDeVotes\":null,\"MoyenneDesVotes\":null,\"Budget\":null,\"Revenue\":null,\"Synopsis\":null,\"Id\":null,\"Poster\":null,\"Nom1\":null,\"NombreResultat\":null,\"NomSerie\":\"Kördüğüm\",\"TitreOrigineSerie\":\"Kördüğüm\",\"NombreDEpisodesSerie\":\"3\",\"NombreDeSaisonsSerie\":\"2\",\"EnCoursDeProduction\":\"Production terminée\",\"NombreDeVotesSerie\":\"0\",\"MoyenneDesVotesSerie\":\"0\",\"PosterSerie\":\"/fPuLlGnh4IaZRnsrKg2KijXLzuF.jpg\",\"SynopsisSerie\":null}")
-            {
-                ros = null;
-            }
-            else
-            {
-                ros = JsonConvert.DeserializeObject<RootObjectFilms>(test);
-            }
+
+            tttt = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
         }
         #region Objets Json sérialisation
-
-        public class List
+        public class RootObjectSerie
         {
             public object Nom { get; set; }
             public object Genre { get; set; }
@@ -181,11 +166,6 @@ namespace VidéoThèque
             public object MoyenneDesVotesSerie { get; set; }
             public object PosterSerie { get; set; }
             public object SynopsisSerie { get; set; }
-        }
-
-        public class RootObjectFilms
-        {
-            public List<List> list { get; set; }
         }
 
         #endregion

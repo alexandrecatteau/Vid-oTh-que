@@ -46,6 +46,7 @@ namespace VidéoThèque
             this.BoutonTriParPopularité = new System.Windows.Forms.Button();
             this.BoutonTriParVote = new System.Windows.Forms.Button();
             this.LabelNombreDeResultats = new System.Windows.Forms.Label();
+            this.BoutonFavoris = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -192,11 +193,22 @@ namespace VidéoThèque
             this.LabelNombreDeResultats.Text = "?/?";
             this.LabelNombreDeResultats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // BoutonFavoris
+            // 
+            this.BoutonFavoris.Location = new System.Drawing.Point(1084, 13);
+            this.BoutonFavoris.Name = "BoutonFavoris";
+            this.BoutonFavoris.Size = new System.Drawing.Size(238, 35);
+            this.BoutonFavoris.TabIndex = 11;
+            this.BoutonFavoris.Text = "Favoris";
+            this.BoutonFavoris.UseVisualStyleBackColor = true;
+            this.BoutonFavoris.Click += new System.EventHandler(this.BoutonFavoris_Click);
+            // 
             // AffichagePrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1336, 575);
+            this.Controls.Add(this.BoutonFavoris);
             this.Controls.Add(this.LabelNombreDeResultats);
             this.Controls.Add(this.BoutonTriParVote);
             this.Controls.Add(this.BoutonTriParPopularité);
@@ -229,6 +241,7 @@ namespace VidéoThèque
         private Button BoutonTriParPopularité;
         private Button BoutonTriParVote;
         private Label LabelNombreDeResultats;
+        private Button BoutonFavoris;
     }
 }
 
