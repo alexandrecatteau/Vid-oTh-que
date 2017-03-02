@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using  System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
@@ -31,6 +33,7 @@ namespace VidéoThèque
         private Label labelAffichageRevenue;
         private Label label9;
         private Label labelAffichageSynopsis;
+        private Button BoutonAjouterAyxFavoris;
         private ObjetsDataGridView odgv;
 
         internal ObjetsDataGridView Odgv
@@ -98,6 +101,7 @@ namespace VidéoThèque
             this.labelAffichageBudget = new System.Windows.Forms.Label();
             this.labelAffichageRevenue = new System.Windows.Forms.Label();
             this.labelAffichageSynopsis = new System.Windows.Forms.Label();
+            this.BoutonAjouterAyxFavoris = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,7 +119,7 @@ namespace VidéoThèque
             this.labelAffichageTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAffichageTitre.Location = new System.Drawing.Point(297, 13);
             this.labelAffichageTitre.Name = "labelAffichageTitre";
-            this.labelAffichageTitre.Size = new System.Drawing.Size(548, 53);
+            this.labelAffichageTitre.Size = new System.Drawing.Size(496, 53);
             this.labelAffichageTitre.TabIndex = 1;
             this.labelAffichageTitre.Text = "labelAffichageTitre";
             this.labelAffichageTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -290,9 +294,20 @@ namespace VidéoThèque
             this.labelAffichageSynopsis.TabIndex = 18;
             this.labelAffichageSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // AffichageResume
+            // BoutonAjouterAyxFavoris
+            // 
+            this.BoutonAjouterAyxFavoris.Location = new System.Drawing.Point(800, 13);
+            this.BoutonAjouterAyxFavoris.Name = "BoutonAjouterAyxFavoris";
+            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(125, 53);
+            this.BoutonAjouterAyxFavoris.TabIndex = 19;
+            this.BoutonAjouterAyxFavoris.Text = "Ajouter aux favoris";
+            this.BoutonAjouterAyxFavoris.UseVisualStyleBackColor = true;
+            this.BoutonAjouterAyxFavoris.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoutonAjouterAyxFavoris_MouseClick);
+            // 
+            // AffichageResumeFilm
             // 
             this.ClientSize = new System.Drawing.Size(939, 479);
+            this.Controls.Add(this.BoutonAjouterAyxFavoris);
             this.Controls.Add(this.labelAffichageSynopsis);
             this.Controls.Add(this.labelAffichageSlogan);
             this.Controls.Add(this.labelAffichageTitreOriginal);
@@ -312,10 +327,20 @@ namespace VidéoThèque
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelAffichageTitre);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "AffichageResume";
+            this.Name = "AffichageResumeFilm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void BoutonAjouterAyxFavoris_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+
+                string serialisation = JsonResumeFilm.Serialisation(odgv);
+                //StreamWriter sw = new StreamWriter();
+            }
         }
     }
 }

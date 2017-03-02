@@ -53,8 +53,14 @@ namespace VidéoThèque
             return odgv;
         }
 
-        
-        #region Objets Json
+        public static  string Serialisation(ObjetsDataGridView odgv)
+        {
+            string ros = JsonConvert.SerializeObject(odgv);
+            Debug.Print(ros);
+            return ros;
+        }
+
+        #region Objets Json désérialisation API
 
         public class RootObject
         {
@@ -83,9 +89,43 @@ namespace VidéoThèque
             //public bool video { get; set; }
             public double vote_average { get; set; }
             public int vote_count { get; set; }
-        } 
+        }
         #endregion
 
+        #region Objets Json sérialisation
+
+        public class RootObjectSerialisation
+        {
+            public object Nom { get; set; }
+            public object Genre { get; set; }
+            public object Vote { get; set; }
+            public object MaxPage { get; set; }
+            public object Popularite { get; set; }
+            public string Slogan { get; set; }
+            public string TitreOrigine { get; set; }
+            public string DateDeSortie { get; set; }
+            public string Duree { get; set; }
+            public string NombreDeVotes { get; set; }
+            public string MoyenneDesVotes { get; set; }
+            public string Budget { get; set; }
+            public string Revenue { get; set; }
+            public string Synopsis { get; set; }
+            public object Id { get; set; }
+            public string Poster { get; set; }
+            public string Nom1 { get; set; }
+            public object NombreResultat { get; set; }
+            public object NomSerie { get; set; }
+            public object TitreOrigineSerie { get; set; }
+            public object NombreDEpisodesSerie { get; set; }
+            public object NombreDeSaisonsSerie { get; set; }
+            public object EnCoursDeProduction { get; set; }
+            public object NombreDeVotesSerie { get; set; }
+            public object MoyenneDesVotesSerie { get; set; }
+            public object PosterSerie { get; set; }
+            public object SynopsisSerie { get; set; }
+        }
+
+        #endregion
 
         public string Id
         {
