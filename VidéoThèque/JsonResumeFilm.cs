@@ -59,23 +59,26 @@ namespace VidéoThèque
             ObjetsDataGridView odgv = new ObjetsDataGridView(ro.title.ToString(), ro.poster_path.ToString(), ro.tagline.ToString(), ro.original_title.ToString(), ro.release_date.ToString(), ro.runtime.ToString(), ro.vote_count.ToString(), ro.vote_average.ToString(), ro.budget.ToString(), ro.revenue.ToString(), ro.overview.ToString());
             return odgv;
         }
-        public List<RootObjectFilm> tttt = new List<RootObjectFilm>();
+        public List<RootObjectFilm> tttt;
         public  void Serialisation(ObjetsDataGridView test)
         {
             Deserialiser();
             string s1 = JsonConvert.SerializeObject(test);
             RootObjectFilm rrr = JsonConvert.DeserializeObject<RootObjectFilm>(s1);
-            tttt.Add(rrr);
-            StreamWriter sw = new StreamWriter(@".\Serialisation\filmsFavoris.json", true);
-            for (int i = 0; i < tttt.Count; i++)
+            if (tttt == null)
             {
-                sw.WriteLine(tttt[i]); 
+                tttt = new List<RootObjectFilm>();
             }
+            tttt.Add(rrr);
+            string s2 = JsonConvert.SerializeObject(tttt);
+            StreamWriter sw = new StreamWriter(@".\Serialisation\filmsFavoris.json", false);
+            sw.WriteLine(s2);
             sw.Close();
         }
 
         public void Deserialiser()
         {
+            tttt = new List<RootObjectFilm>();
             StreamReader sr = new StreamReader(@".\Serialisation\filmsFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
