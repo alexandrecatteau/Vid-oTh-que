@@ -44,7 +44,7 @@ namespace VidéoThèque
             this.BoutonDebut = new System.Windows.Forms.Button();
             this.BoutonTriParTitre = new System.Windows.Forms.Button();
             this.BoutonTriParPopularité = new System.Windows.Forms.Button();
-            this.TriParVote = new System.Windows.Forms.Button();
+            this.BoutonTriParVote = new System.Windows.Forms.Button();
             this.LabelNombreDeResultats = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +53,7 @@ namespace VidéoThèque
             // 
             this.treeViewFilmSeries.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeViewFilmSeries.Cursor = System.Windows.Forms.Cursors.Hand;
             this.treeViewFilmSeries.Location = new System.Drawing.Point(12, 12);
             this.treeViewFilmSeries.Name = "treeViewFilmSeries";
             treeNode1.Name = "Nœud0";
@@ -67,8 +68,7 @@ namespace VidéoThèque
             this.treeViewFilmSeries.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // dataGridView1
-            //
-            dataGridView1.Dock = DockStyle.Fill;
+            // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
@@ -172,15 +172,15 @@ namespace VidéoThèque
             this.BoutonTriParPopularité.UseVisualStyleBackColor = true;
             this.BoutonTriParPopularité.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoutonTriParPopularité_MouseClick);
             // 
-            // TriParVote
+            // BoutonTriParVote
             // 
-            this.TriParVote.Location = new System.Drawing.Point(625, 13);
-            this.TriParVote.Name = "TriParVote";
-            this.TriParVote.Size = new System.Drawing.Size(226, 36);
-            this.TriParVote.TabIndex = 9;
-            this.TriParVote.Text = "Nombre de Votes";
-            this.TriParVote.UseVisualStyleBackColor = true;
-            this.TriParVote.Click += new System.EventHandler(this.TriParVote_Click);
+            this.BoutonTriParVote.Location = new System.Drawing.Point(625, 13);
+            this.BoutonTriParVote.Name = "BoutonTriParVote";
+            this.BoutonTriParVote.Size = new System.Drawing.Size(226, 36);
+            this.BoutonTriParVote.TabIndex = 9;
+            this.BoutonTriParVote.Text = "Nombre de Votes";
+            this.BoutonTriParVote.UseVisualStyleBackColor = true;
+            this.BoutonTriParVote.Click += new System.EventHandler(this.TriParVote_Click);
             // 
             // LabelNombreDeResultats
             // 
@@ -198,7 +198,7 @@ namespace VidéoThèque
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1336, 575);
             this.Controls.Add(this.LabelNombreDeResultats);
-            this.Controls.Add(this.TriParVote);
+            this.Controls.Add(this.BoutonTriParVote);
             this.Controls.Add(this.BoutonTriParPopularité);
             this.Controls.Add(this.BoutonTriParTitre);
             this.Controls.Add(this.BoutonDebut);
@@ -227,7 +227,7 @@ namespace VidéoThèque
         private Button BoutonDebut;
         private Button BoutonTriParTitre;
         private Button BoutonTriParPopularité;
-        private Button TriParVote;
+        private Button BoutonTriParVote;
         private Label LabelNombreDeResultats;
     }
 }

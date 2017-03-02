@@ -9,11 +9,15 @@ using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
+    /// <summary>
+    /// Exploitation des données Json des films
+    /// </summary>
     class JsonFilm
     {
         private string annee;
         private int page;
 
+        #region Objets Json
         private RootObject ro;
         public class Result
         {
@@ -48,7 +52,13 @@ namespace VidéoThèque
         {
             public List<Genre> genres { get; set; }
         }
-
+        #endregion
+        /// <summary>
+        /// Se connecte à l'API pour extraire les séries
+        /// </summary>
+        /// <param name="annee">Année de sortie</param>
+        /// <param name="page">Numéro de la page</param>
+        /// <param name="lienApi">URL de l'API</param>
         public JsonFilm(string annee, int page, string lienApi)
         {
             this.annee = annee;
@@ -61,7 +71,10 @@ namespace VidéoThèque
 
             ro = JsonConvert.DeserializeObject<RootObject>(json);
         }
-
+        /// <summary>
+        /// Création des objets pour mettre dans la DGV
+        /// </summary>
+        /// <returns>Une liste d'objets</returns>
         public List<ObjetsDataGridView> CreationObjets()
         {
             WebClient wc1Client = new WebClient();
@@ -85,7 +98,12 @@ namespace VidéoThèque
             }
             return objetsDataGridView;
         }
-
+        /// <summary>
+        /// Création d'une liste pour afficher les genres d'une série
+        /// </summary>
+        /// <param name="i">int qui correspond au genre</param>
+        /// <param name="rog">Objet json</param>
+        /// <returns>Une liste avec les genres d'une série</returns>
         private List<string> Genres(List<int> listInt, RootObjectGenre rog)
         {
             List<string> retour = new List<string>();
@@ -104,7 +122,5 @@ namespace VidéoThèque
             }
             return retour;
         }
-
-        
     }
 }

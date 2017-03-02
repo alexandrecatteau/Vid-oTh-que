@@ -7,8 +7,11 @@ using  System.Windows.Forms;
 
 namespace VidéoThèque
 {
-    class AffichageResume : Form
+    class AffichageResumeFilm : Form
     {
+        /// <summary>
+        /// Objets dans l'AffichageResume
+        /// </summary>
         private PictureBox pictureBox1;
         private Label labelAffichageTitre;
         private Label label2;
@@ -42,13 +45,23 @@ namespace VidéoThèque
                 odgv = value;
             }
         }
-
-        public AffichageResume(ObjetsDataGridView odgv)
+        /// <summary>
+        /// Afficher les infos du film dans l'AffichageResume
+        /// </summary>
+        /// <param name="odgv">Objet ObjetsDataGridView</param>
+        public AffichageResumeFilm(ObjetsDataGridView odgv)
         {
             InitializeComponent();
-            
             this.Odgv = odgv;
-            pictureBox1.Load("https://image.tmdb.org/t/p/w500" + Odgv.Poster);
+            try
+            {
+                pictureBox1.Load("https://image.tmdb.org/t/p/w500" + Odgv.Poster);
+            }
+            catch (Exception)
+            {
+                pictureBox1.Load(@"E:\documents\Visual Studio\VidéoThèque\VidéoThèque\Images\Image non trouvé.jpg");
+                
+            }
             labelAffichageTitre.Text = Odgv.Nom1.ToString();
             labelAffichageTitreOriginal.Text = Convert.ToString(Odgv.TitreOrigine.ToString());
             labelAffichageSlogan.Text = Odgv.Slogan;
@@ -61,6 +74,9 @@ namespace VidéoThèque
             labelAffichageRevenue.Text = Odgv.Revenue + "$";
             labelAffichageSynopsis.Text = Odgv.Synopsis;
         }
+        /// <summary>
+        /// Initialisation des composants AffichageResume
+        /// </summary>
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
