@@ -48,9 +48,9 @@ namespace VidéoThèque
             DataTable dt = new DataTable();
             dt.Columns.Add("Nom de la série");
             ros = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
-            for (int i = 0; i < rof.Count; i++)
+            for (int i = 0; i < ros.Count; i++)
             {
-                dt.Rows.Add(rof[i].NomSerie);
+                dt.Rows.Add(ros[i].NomSerie);
             }
             dataGridViewSeries.DataSource = dt;
         }
