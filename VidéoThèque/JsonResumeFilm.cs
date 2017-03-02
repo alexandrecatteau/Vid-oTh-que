@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.IO;
 
 namespace VidéoThèque
 {
@@ -55,6 +56,7 @@ namespace VidéoThèque
 
         public static  string Serialisation(ObjetsDataGridView odgv)
         {
+            
             string ros = JsonConvert.SerializeObject(odgv);
             Debug.Print(ros);
             return ros;
