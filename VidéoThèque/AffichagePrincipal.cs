@@ -18,6 +18,9 @@ namespace VidéoThèque
         private bool affichageFilms;
         private bool affichageSeries;
         private string lienAPI = null;
+        private TreeNode couleurText = null;
+        private TreeNode couleurFont = null;
+
         /// <summary>
         /// Initialisation de la fenêtre
         /// </summary>
@@ -124,8 +127,13 @@ namespace VidéoThèque
         {
             if (e.Node.Parent != null && e.Node.Parent.Text == "Films")
             {
-                e.Node.BackColor = Color.White;
-                e.Node.ForeColor = Color.Black;
+                if (couleurFont != null && couleurText != null)
+                {
+                    couleurFont.BackColor = Color.White;
+                    couleurText.ForeColor = Color.Black; 
+                }
+                couleurFont = e.Node;
+                couleurText = e.Node;
                 page = 1;
                 annee = e.Node.Text;
                 e.Node.BackColor = SystemColors.Highlight;
@@ -137,8 +145,15 @@ namespace VidéoThèque
             }
             if (e.Node.Parent != null && e.Node.Parent.Text == "Séries TV")
             {
-                e.Node.BackColor = Color.White;
-                e.Node.ForeColor = Color.Black;
+                if (couleurFont != null && couleurText != null)
+                {
+                    couleurFont.BackColor = Color.White;
+                    couleurText.ForeColor = Color.Black;
+                }
+                couleurFont.BackColor = Color.White;
+                couleurText.ForeColor = Color.Black;
+                couleurFont = e.Node;
+                couleurText = e.Node;
                 page = 1;
                 annee = e.Node.Text;
                 e.Node.BackColor = SystemColors.Highlight;
