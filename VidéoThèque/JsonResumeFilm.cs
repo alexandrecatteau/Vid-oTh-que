@@ -14,6 +14,7 @@ namespace VidéoThèque
     {
         private string id;
         private RootObject ro;
+        private RootObjectFilms rof;
         /// <summary>
         /// Connexion à l'API pour afficher le résumé
         /// </summary>
@@ -44,6 +45,11 @@ namespace VidéoThèque
                 );
             
         }
+
+        public JsonResumeFilm()
+        {
+            
+        }
         /// <summary>
         /// Création des objets pour ensuite les mettres dans AffichageResume
         /// </summary>
@@ -54,14 +60,29 @@ namespace VidéoThèque
             return odgv;
         }
 
-        public static  string Serialisation(ObjetsDataGridView odgv)
+        public  void Serialisation(ObjetsDataGridView test)
         {
             
-            string ros = JsonConvert.SerializeObject(odgv);
-            Debug.Print(ros);
-            return ros;
+            Deserialiser();
+            string s = JsonConvert.SerializeObject(test);
+            rof.list.Add(JsonConvert.DeserializeObject<List>(s));
+            string ecrire = JsonConvert.SerializeObject(rof);
+            StreamWriter sw = new StreamWriter(@"C:\Users\STAGIAIRE\Documents\Visual Studio 2015\Vid-oTh-que\VidéoThèque\Serialisation\filmsFavoris.json", false);
+            sw.Write(ecrire);
+            sw.Close();
+            
+            
         }
 
+        public void Deserialiser()
+        {
+            StreamReader sr = new StreamReader(@"C:\Users\STAGIAIRE\Documents\Visual Studio 2015\Vid-oTh-que\VidéoThèque\Serialisation\filmsFavoris.json");
+            string json = sr.ReadToEnd();
+            sr.Close();
+            rof = JsonConvert.DeserializeObject<RootObjectFilms>(json);
+            
+        }
+      
         #region Objets Json désérialisation API
 
         public class RootObject
@@ -96,7 +117,7 @@ namespace VidéoThèque
 
         #region Objets Json sérialisation
 
-        public class RootObjectSerialisation
+        public class List
         {
             public object Nom { get; set; }
             public object Genre { get; set; }
@@ -125,6 +146,11 @@ namespace VidéoThèque
             public object MoyenneDesVotesSerie { get; set; }
             public object PosterSerie { get; set; }
             public object SynopsisSerie { get; set; }
+        }
+
+        public class RootObjectFilms
+        {
+            public List<List> list { get; set; }
         }
 
         #endregion

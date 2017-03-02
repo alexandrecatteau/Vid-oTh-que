@@ -337,11 +337,8 @@ namespace VidéoThèque
         {
             if (e.Button == MouseButtons.Left)
             {
-
-                string serialisation = JsonResumeFilm.Serialisation(odgv);
-                StreamWriter sw = new StreamWriter(@"C:\Users\STAGIAIRE\Documents\Visual Studio 2015\Vid-oTh-que\VidéoThèque\Serialisation\serialisation film.json", true);
-                sw.WriteLine(serialisation);
-                sw.Close();
+                JsonResumeFilm test = new JsonResumeFilm();
+                test.Serialisation(odgv);
             }
         }
     }
