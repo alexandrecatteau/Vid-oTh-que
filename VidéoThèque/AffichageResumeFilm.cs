@@ -338,7 +338,7 @@ namespace VidéoThèque
             if (e.Button == MouseButtons.Left)
             {
                 JsonResumeFilm test = new JsonResumeFilm();
-                test.Serialisation(odgv);
+                test.Serialisation(odgv); qsd
             }
         }
     }
