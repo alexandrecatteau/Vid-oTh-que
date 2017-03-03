@@ -62,7 +62,7 @@ namespace VidéoThèque
             }
             catch (Exception)
             {
-                pictureBox1.Load(@"E:\documents\Visual Studio\VidéoThèque\VidéoThèque\Images\Image non trouvé.jpg");
+                pictureBox1.Load(@".\Images\Image non trouvé.jpg");
                 
             }
             labelAffichageTitre.Text = Odgv.Nom1.ToString();
