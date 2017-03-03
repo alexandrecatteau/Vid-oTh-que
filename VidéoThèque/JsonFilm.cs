@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Newtonsoft.Json;
 
@@ -63,13 +64,20 @@ namespace VidéoThèque
         {
             this.annee = annee;
             this.page = page;
-            WebClient wc = new WebClient();
-            wc.Encoding = Encoding.UTF8;
-            string json = wc.DownloadString(
-                lienApi + "&include_adult=false&include_video=false&page="
-                + page + "&primary_release_year=" + annee);
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.Encoding = Encoding.UTF8;
+                string json = wc.DownloadString(
+                    lienApi + "&include_adult=false&include_video=false&page="
+                    + page + "&primary_release_year=" + annee);
 
-            ro = JsonConvert.DeserializeObject<RootObject>(json);
+                ro = JsonConvert.DeserializeObject<RootObject>(json);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         /// <summary>
         /// Création des objets pour mettre dans la DGV
@@ -77,28 +85,37 @@ namespace VidéoThèque
         /// <returns>Une liste d'objets</returns>
         public List<ObjetsDataGridView> CreationObjets()
         {
-            WebClient wc1Client = new WebClient();
-            wc1Client.Encoding = Encoding.UTF8;
-            string json =
-                wc1Client.DownloadString(
-                    "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
-            RootObjectGenre rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
+
             List<ObjetsDataGridView> objetsDataGridView = new List<ObjetsDataGridView>();
-            for (int i = 0; i < ro.results.Count; i++)
+            try
             {
-                List<string> genreList = Genres(ro.results[i].genre_ids, rog);
-                string genreString = null;
-                for (int j = 0; j < genreList.Count; j++)
+                WebClient wc1Client = new WebClient();
+                wc1Client.Encoding = Encoding.UTF8;
+                //Téléchargement du texte Json avec tous les genres
+                string json =
+                    wc1Client.DownloadString(
+                        "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
+                RootObjectGenre rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
+                for (int i = 0; i < ro.results.Count; i++)
                 {
-                    genreString += genreList[j] + ", ";
+                    List<string> genreList = Genres(ro.results[i].genre_ids, rog);
+                    string genreString = null;
+                    for (int j = 0; j < genreList.Count; j++)
+                    {
+                        genreString += genreList[j] + ", ";
+                    }
+                    if (genreString != null)
+                    {
+                        genreString = genreString.Substring(0, genreString.Length - 2);
+                    }
+                    objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].original_title.ToString(),
+                        genreString, ro.results[i].vote_count.ToString(), ro.results[i].popularity.ToString(),
+                        ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));
                 }
-                if (genreString != null)
-                {
-                    genreString = genreString.Substring(0, genreString.Length - 2); 
-                }
-                objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].original_title.ToString(), 
-                    genreString, ro.results[i].vote_count.ToString(), ro.results[i].popularity.ToString(), 
-                    ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
             return objetsDataGridView;
         }

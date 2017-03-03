@@ -90,12 +90,19 @@ namespace VidéoThèque
         public JsonResumeSerie(string id)
         {
             this.id = id;
-            WebClient wc = new WebClient();
-            wc.Encoding = Encoding.UTF8;
-            string json = wc.DownloadString("https://api.themoviedb.org/3/tv/" + id + "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR")
-                .Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0");
-
-            ro = JsonConvert.DeserializeObject<RootObject>(json.Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0"));
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.Encoding = Encoding.UTF8;
+                string json = wc.DownloadString(
+                    "https://api.themoviedb.org/3/tv/" + id + "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR")
+                    .Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0");
+                ro = JsonConvert.DeserializeObject<RootObject>(json.Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0"));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         /// <summary>
         /// Création des objets pour mettre dans la DGV
@@ -143,11 +150,18 @@ namespace VidéoThèque
         public void Deserialiser()
         {
             tttt = new List<RootObjectSerie>();
-            StreamReader sr = new StreamReader(@".\seriesFavoris.json");
-            string json = sr.ReadToEnd();
-            sr.Close();
+            try
+            {
+                StreamReader sr = new StreamReader(@".\seriesFavoris.json");
+                string json = sr.ReadToEnd();
+                sr.Close();
 
-            tttt = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
+                tttt = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         #region Objets Json sérialisation
         public class RootObjectSerie

@@ -7,6 +7,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 
 namespace VidéoThèque
 {
@@ -24,24 +25,31 @@ namespace VidéoThèque
         public JsonResumeFilm(string id)
         {
             this.id = id;
-            WebClient wc = new WebClient();
-            wc.Encoding = Encoding.UTF8;
-            string json =
-                wc.DownloadString("https://api.themoviedb.org/3/movie/" + id +
-                                  "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.Encoding = Encoding.UTF8;
+                string json =
+                    wc.DownloadString("https://api.themoviedb.org/3/movie/" + id +
+                                      "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
 
-            Debug.Print(json);
-            ro = JsonConvert.DeserializeObject<RootObject>(json.Replace(",\"runtime\":null", ",\"runtime\": 0").
-                Replace("\"overview\":null", "\"overview\":\"\"").
-                Replace("\"tagline\":null", "\"tagline\":\"\"").
-                Replace(",\"poster_path\":null", ",\"poster_path\":\"\"").
-                Replace("\"budget\":null", "\"budget\":0").
-                Replace("\"original_title\":null", "\"original_title\":\"\"").
-                Replace("\"release_date\":null", "\"release_date\":\"\"").
-                Replace("\"vote_count\":null", "\"vote_count\":0").
-                Replace("\"vote_average\":null", "\"vote_average\":0").
-                Replace("\"revenue\":null", "\"revenue\":0")
-                );
+                Debug.Print(json);
+                ro = JsonConvert.DeserializeObject<RootObject>(json.Replace(",\"runtime\":null", ",\"runtime\": 0").
+                    Replace("\"overview\":null", "\"overview\":\"\"").
+                    Replace("\"tagline\":null", "\"tagline\":\"\"").
+                    Replace(",\"poster_path\":null", ",\"poster_path\":\"\"").
+                    Replace("\"budget\":null", "\"budget\":0").
+                    Replace("\"original_title\":null", "\"original_title\":\"\"").
+                    Replace("\"release_date\":null", "\"release_date\":\"\"").
+                    Replace("\"vote_count\":null", "\"vote_count\":0").
+                    Replace("\"vote_average\":null", "\"vote_average\":0").
+                    Replace("\"revenue\":null", "\"revenue\":0")
+                    );
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             
         }
 
