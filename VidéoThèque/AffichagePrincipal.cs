@@ -20,7 +20,8 @@ namespace VidéoThèque
         private string lienAPI = null;
         private TreeNode couleurText = null;
         private TreeNode couleurFont = null;
-
+        private string cleAPI = "30666db2f7a024c11b30b58b88983362";
+        private string debutURL = "https://api.themoviedb.org/3/discover/";
         /// <summary>
         /// Initialisation de la fenêtre
         /// </summary>
@@ -81,45 +82,59 @@ namespace VidéoThèque
         /// </summary>
         public void RafraichirFilm()
         {
-            BoutonTriParVote.Text = "Nombre de votes";
-            JsonFilm json = new JsonFilm(annee, page, lienAPI );
-            objetsDataGridView = json.CreationObjets();
-            LabelNombreDePages.Text = page.ToString() + "/" + objetsDataGridView[0].MaxPage.ToString();
-            LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat.ToString();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Nom");
-            dt.Columns.Add("Genre");
-            dt.Columns.Add("Nombre de Votes");
-            dt.Columns.Add("Popularité");
-            foreach (var v in objetsDataGridView)
-                dt.Rows.Add(v.Nom, v.Genre, v.Vote, v.Popularite);
+            try
             {
+                BoutonTriParVote.Text = "Nombre de votes";
+                JsonFilm json = new JsonFilm(annee, page, lienAPI);
+                objetsDataGridView = json.CreationObjets();
+                LabelNombreDePages.Text = page.ToString() + "/" + objetsDataGridView[0].MaxPage.ToString();
+                LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat.ToString();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nom");
+                dt.Columns.Add("Genre");
+                dt.Columns.Add("Nombre de Votes");
+                dt.Columns.Add("Popularité");
+                foreach (var v in objetsDataGridView)
+                    dt.Rows.Add(v.Nom, v.Genre, v.Vote, v.Popularite);
+                {
+                }
+                dataGridView1.DataSource = dt;
+                DesactiverBoutons(Convert.ToInt32(objetsDataGridView[0].MaxPage));
             }
-            dataGridView1.DataSource = dt;
-            DesactiverBoutons(Convert.ToInt32(objetsDataGridView[0].MaxPage));
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         /// <summary>
         /// Permet de raffraichir le DGV
         /// </summary>
         public void RafraichirSeries()
         {
-            BoutonTriParVote.Text = "Moyenne des votes";
-
-            JsonSerie json = new JsonSerie(annee, page, lienAPI);
-            objetsDataGridView = json.CreationObjets();
-            LabelNombreDePages.Text = page.ToString() + "/" + objetsDataGridView[0].MaxPage.ToString();
-            LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat.ToString();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Nom");
-            dt.Columns.Add("Genre");
-            dt.Columns.Add("Moyenne des Votes");
-            dt.Columns.Add("Popularité");
-            foreach (var v in objetsDataGridView)
+            try
             {
-                dt.Rows.Add(v.Nom, v.Genre, v.Vote, v.Popularite);
+                BoutonTriParVote.Text = "Moyenne des votes";
+
+                JsonSerie json = new JsonSerie(annee, page, lienAPI);
+                objetsDataGridView = json.CreationObjets();
+                LabelNombreDePages.Text = page.ToString() + "/" + objetsDataGridView[0].MaxPage.ToString();
+                LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat.ToString();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nom");
+                dt.Columns.Add("Genre");
+                dt.Columns.Add("Moyenne des Votes");
+                dt.Columns.Add("Popularité");
+                foreach (var v in objetsDataGridView)
+                {
+                    dt.Rows.Add(v.Nom, v.Genre, v.Vote, v.Popularite);
+                }
+                dataGridView1.DataSource = dt;
+                DesactiverBoutons(Convert.ToInt32(objetsDataGridView[0].MaxPage));
             }
-            dataGridView1.DataSource = dt;
-            DesactiverBoutons(Convert.ToInt32(objetsDataGridView[0].MaxPage));
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         /// <summary>
         /// Evénement click sur le noeud du TreeView 
@@ -141,7 +156,7 @@ namespace VidéoThèque
                 e.Node.ForeColor = SystemColors.HighlightText;
                 affichageFilms = true;
                 affichageSeries = false;
-                lienAPI = "https://api.themoviedb.org/3/discover/movie?api_key=d63d007af8c7f4d8beb5206b14594b47&language=fr-FR&sort_by=popularity.desc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
                 RafraichirFilm();
             }
             if (e.Node.Parent != null && e.Node.Parent.Text == "Séries TV")
@@ -160,7 +175,7 @@ namespace VidéoThèque
                 affichageFilms = false;
                 affichageSeries = true;
                 lienAPI =
-                    "https://api.themoviedb.org/3/discover/tv?api_key=d63d007af8c7f4d8beb5206b14594b47&language=fr-FR&sort_by=popularity.desc";
+                    debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
                 RafraichirSeries();
             }
         }
@@ -255,13 +270,13 @@ namespace VidéoThèque
             
             if (affichageSeries == true)
             {
-                lienAPI = "https://api.themoviedb.org/3/discover/tv?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR&sort_by=original_title.asc";
+                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=original_title.asc";
                 RafraichirSeries();
             }
 
             if (affichageFilms == true)
             {
-                lienAPI = "https://api.themoviedb.org/3/discover/movie?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR&sort_by=title.asc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=title.asc";
                 RafraichirFilm();
             }
         }
@@ -273,13 +288,13 @@ namespace VidéoThèque
            
             if (affichageSeries == true)
             {
-                lienAPI = "https://api.themoviedb.org/3/discover/tv?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR&sort_by=popularity.desc";
+                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
                 RafraichirSeries();
             }
 
             if (affichageFilms == true)
             {
-                lienAPI = "https://api.themoviedb.org/3/discover/movie?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR&sort_by=popularity.desc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
                 RafraichirFilm();
             }
 
@@ -292,14 +307,14 @@ namespace VidéoThèque
             
             if (affichageSeries == true)
             {
-                lienAPI = "https://api.themoviedb.org/3/discover/tv?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR&sort_by=vote_average.desc";
+                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=vote_average.desc";
                 
                 RafraichirSeries();
             }
 
             if (affichageFilms == true)
             {
-                lienAPI = "https://api.themoviedb.org/3/discover/movie?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR&sort_by=vote_count.desc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=vote_count.desc";
                 RafraichirFilm();
             }
         }

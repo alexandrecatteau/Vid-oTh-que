@@ -35,19 +35,26 @@ namespace VidéoThèque
         /// </summary>
         private void RemplissageDTVFilms()
         {
-            StreamReader sr = new StreamReader(@".\filmsFavoris.json");
-            string json = sr.ReadToEnd();
-            sr.Close();
-            if (json != "")
+            try
             {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Nom du film");
-                rof = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
-                for (int i = 0; i < rof.Count; i++)
+                StreamReader sr = new StreamReader(@".\filmsFavoris.json");
+                string json = sr.ReadToEnd();
+                sr.Close();
+                if (json != "")
                 {
-                    dt.Rows.Add(rof[i].Nom1);
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Nom du film");
+                    rof = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
+                    for (int i = 0; i < rof.Count; i++)
+                    {
+                        dt.Rows.Add(rof[i].Nom1);
+                    }
+                    dataGridViewFilms.DataSource = dt;
                 }
-                dataGridViewFilms.DataSource = dt; 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
         /// <summary>
@@ -55,20 +62,27 @@ namespace VidéoThèque
         /// </summary>
         private void RemplissageDGVSeries()
         {
-            StreamReader sr = new StreamReader(@".\seriesFavoris.json");
-            string json = sr.ReadToEnd();
-            sr.Close();
-
-            if (json != "")
+            try
             {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Nom de la série");
-                ros = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
-                for (int i = 0; i < ros.Count; i++)
+                StreamReader sr = new StreamReader(@".\seriesFavoris.json");
+                string json = sr.ReadToEnd();
+                sr.Close();
+
+                if (json != "")
                 {
-                    dt.Rows.Add(ros[i].NomSerie);
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Nom de la série");
+                    ros = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
+                    for (int i = 0; i < ros.Count; i++)
+                    {
+                        dt.Rows.Add(ros[i].NomSerie);
+                    }
+                    dataGridViewSeries.DataSource = dt;
                 }
-                dataGridViewSeries.DataSource = dt; 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
