@@ -95,6 +95,7 @@ namespace VidéoThèque
                 dt.Columns.Add("Genre");
                 dt.Columns.Add("Nombre de Votes");
                 dt.Columns.Add("Popularité");
+
                 foreach (var v in objetsDataGridView)
                     dt.Rows.Add(v.Nom, v.Genre, v.Vote, v.Popularite);
                 {

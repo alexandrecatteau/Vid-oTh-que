@@ -19,7 +19,7 @@ namespace VidéoThèque
         private int page;
 
         #region Objets Json
-        private RootObject ro;
+        private RootObject1 ro;
         public class Result
         {
             public string poster_path { get; set; }
@@ -37,7 +37,10 @@ namespace VidéoThèque
             public bool video { get; set; }
             public double vote_average { get; set; }
         }
-        public class RootObject
+        /// <summary>
+        /// Class principale
+        /// </summary>
+        public class RootObject1
         {
             public int page { get; set; }
             public List<Result> results { get; set; }
@@ -72,7 +75,7 @@ namespace VidéoThèque
                     lienApi + "&include_adult=false&include_video=false&page="
                     + page + "&primary_release_year=" + annee);
 
-                ro = JsonConvert.DeserializeObject<RootObject>(json);
+                ro = JsonConvert.DeserializeObject<RootObject1>(json);
             }
             catch (Exception e)
             {
