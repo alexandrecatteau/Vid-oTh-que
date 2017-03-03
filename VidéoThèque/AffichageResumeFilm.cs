@@ -9,6 +9,9 @@ using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
+    /// <summary>
+    /// Affichage du résumé du film
+    /// </summary>
     class AffichageResumeFilm : Form
     {
         /// <summary>
