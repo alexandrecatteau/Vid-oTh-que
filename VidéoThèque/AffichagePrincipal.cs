@@ -22,6 +22,7 @@ namespace VidéoThèque
         private TreeNode couleurFont = null;
         private string cleAPI = "30666db2f7a024c11b30b58b88983362";
         private string debutURL = "https://api.themoviedb.org/3/discover/";
+        private string langueURL = "language=fr-FR";
         /// <summary>
         /// Initialisation de la fenêtre
         /// </summary>
@@ -156,7 +157,7 @@ namespace VidéoThèque
                 e.Node.ForeColor = SystemColors.HighlightText;
                 affichageFilms = true;
                 affichageSeries = false;
-                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&" + langueURL + "&sort_by=popularity.desc";
                 RafraichirFilm();
             }
             if (e.Node.Parent != null && e.Node.Parent.Text == "Séries TV")
@@ -175,7 +176,7 @@ namespace VidéoThèque
                 affichageFilms = false;
                 affichageSeries = true;
                 lienAPI =
-                    debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
+                    debutURL + "tv?api_key=" + cleAPI + "&" + langueURL + "&sort_by=popularity.desc";
                 RafraichirSeries();
             }
         }
@@ -270,13 +271,13 @@ namespace VidéoThèque
             
             if (affichageSeries == true)
             {
-                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=original_title.asc";
+                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&" + langueURL + "&sort_by=original_title.asc";
                 RafraichirSeries();
             }
 
             if (affichageFilms == true)
             {
-                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=title.asc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&" + langueURL + "&sort_by=title.asc";
                 RafraichirFilm();
             }
         }
@@ -288,13 +289,13 @@ namespace VidéoThèque
            
             if (affichageSeries == true)
             {
-                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
+                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&" + langueURL + "&sort_by=popularity.desc";
                 RafraichirSeries();
             }
 
             if (affichageFilms == true)
             {
-                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=popularity.desc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&" + langueURL + "&sort_by=popularity.desc";
                 RafraichirFilm();
             }
 
@@ -307,14 +308,14 @@ namespace VidéoThèque
             
             if (affichageSeries == true)
             {
-                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&language=fr-FR&sort_by=vote_average.desc";
+                lienAPI = debutURL + "tv?api_key=" + cleAPI + "&" + langueURL + "&sort_by=vote_average.desc";
                 
                 RafraichirSeries();
             }
 
             if (affichageFilms == true)
             {
-                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&language=fr-FR&sort_by=vote_count.desc";
+                lienAPI = debutURL + "movie?api_key=" + cleAPI + "&" + langueURL + "&sort_by=vote_count.desc";
                 RafraichirFilm();
             }
         }
@@ -377,7 +378,9 @@ namespace VidéoThèque
             }
             //this.dataGridView1.ClearSelection();
         }
-
+        /// <summary>
+        /// Click sur le bouton favoris pour afficher une nouvelle fenetre
+        /// </summary>
         private void BoutonFavoris_Click(object sender, EventArgs e)
         {
             AffichageFavoris af = new AffichageFavoris();
