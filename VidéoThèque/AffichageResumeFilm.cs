@@ -33,7 +33,7 @@ namespace VidéoThèque
         private Label labelAffichageRevenue;
         private Label label9;
         private Label labelAffichageSynopsis;
-        private Button BoutonAjouterAyxFavoris;
+        public Button BoutonAjouterAuxFavoris;
         private ObjetsDataGridView odgv;
 
         internal ObjetsDataGridView Odgv
@@ -82,6 +82,7 @@ namespace VidéoThèque
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffichageResumeFilm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelAffichageTitre = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -101,7 +102,7 @@ namespace VidéoThèque
             this.labelAffichageBudget = new System.Windows.Forms.Label();
             this.labelAffichageRevenue = new System.Windows.Forms.Label();
             this.labelAffichageSynopsis = new System.Windows.Forms.Label();
-            this.BoutonAjouterAyxFavoris = new System.Windows.Forms.Button();
+            this.BoutonAjouterAuxFavoris = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -294,20 +295,20 @@ namespace VidéoThèque
             this.labelAffichageSynopsis.TabIndex = 18;
             this.labelAffichageSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // BoutonAjouterAyxFavoris
+            // BoutonAjouterAuxFavoris
             // 
-            this.BoutonAjouterAyxFavoris.Location = new System.Drawing.Point(671, 13);
-            this.BoutonAjouterAyxFavoris.Name = "BoutonAjouterAyxFavoris";
-            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(180, 53);
-            this.BoutonAjouterAyxFavoris.TabIndex = 19;
-            this.BoutonAjouterAyxFavoris.Text = "Ajouter aux favoris";
-            this.BoutonAjouterAyxFavoris.UseVisualStyleBackColor = true;
-            this.BoutonAjouterAyxFavoris.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoutonAjouterAyxFavoris_MouseClick);
+            this.BoutonAjouterAuxFavoris.Location = new System.Drawing.Point(671, 13);
+            this.BoutonAjouterAuxFavoris.Name = "BoutonAjouterAuxFavoris";
+            this.BoutonAjouterAuxFavoris.Size = new System.Drawing.Size(180, 53);
+            this.BoutonAjouterAuxFavoris.TabIndex = 19;
+            this.BoutonAjouterAuxFavoris.Text = "Ajouter aux favoris";
+            this.BoutonAjouterAuxFavoris.UseVisualStyleBackColor = true;
+            this.BoutonAjouterAuxFavoris.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoutonAjouterAyxFavoris_MouseClick);
             // 
             // AffichageResumeFilm
             // 
             this.ClientSize = new System.Drawing.Size(865, 479);
-            this.Controls.Add(this.BoutonAjouterAyxFavoris);
+            this.Controls.Add(this.BoutonAjouterAuxFavoris);
             this.Controls.Add(this.labelAffichageSynopsis);
             this.Controls.Add(this.labelAffichageSlogan);
             this.Controls.Add(this.labelAffichageTitreOriginal);
@@ -327,12 +328,16 @@ namespace VidéoThèque
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelAffichageTitre);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AffichageResumeFilm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-
         }
-
+        /// <summary>
+        /// Evénement quand on click sur le bouton favoris
+        /// </summary>
         private void BoutonAjouterAyxFavoris_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

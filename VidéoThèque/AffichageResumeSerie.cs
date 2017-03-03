@@ -27,7 +27,7 @@ namespace VidéoThèque
         private Label labelNombreDeVotes;
         private Label labelSynopsis;
         private PictureBox pictureBox1;
-        private Button BoutonAjouterAyxFavoris;
+        public Button BoutonAjouterAyxFavoris;
         private ObjetsDataGridView odgv;
         /// <summary>
         /// Constructeur pour afficher le résumé
@@ -59,6 +59,7 @@ namespace VidéoThèque
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffichageResumeSerie));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -82,7 +83,7 @@ namespace VidéoThèque
             // 
             this.pictureBox1.Location = new System.Drawing.Point(13, 13);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(341, 519);
+            this.pictureBox1.Size = new System.Drawing.Size(341, 496);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -163,7 +164,7 @@ namespace VidéoThèque
             this.labelMoyenneDesVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMoyenneDesVotes.Location = new System.Drawing.Point(505, 206);
             this.labelMoyenneDesVotes.Name = "labelMoyenneDesVotes";
-            this.labelMoyenneDesVotes.Size = new System.Drawing.Size(332, 28);
+            this.labelMoyenneDesVotes.Size = new System.Drawing.Size(381, 28);
             this.labelMoyenneDesVotes.TabIndex = 24;
             this.labelMoyenneDesVotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -173,7 +174,7 @@ namespace VidéoThèque
             this.labelNomOrigine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNomOrigine.Location = new System.Drawing.Point(505, 66);
             this.labelNomOrigine.Name = "labelNomOrigine";
-            this.labelNomOrigine.Size = new System.Drawing.Size(332, 28);
+            this.labelNomOrigine.Size = new System.Drawing.Size(381, 28);
             this.labelNomOrigine.TabIndex = 23;
             this.labelNomOrigine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -183,7 +184,7 @@ namespace VidéoThèque
             this.labelNombreEpisodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreEpisodes.Location = new System.Drawing.Point(505, 94);
             this.labelNombreEpisodes.Name = "labelNombreEpisodes";
-            this.labelNombreEpisodes.Size = new System.Drawing.Size(332, 28);
+            this.labelNombreEpisodes.Size = new System.Drawing.Size(381, 28);
             this.labelNombreEpisodes.TabIndex = 22;
             this.labelNombreEpisodes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -193,7 +194,7 @@ namespace VidéoThèque
             this.labelNombreSaisons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreSaisons.Location = new System.Drawing.Point(505, 122);
             this.labelNombreSaisons.Name = "labelNombreSaisons";
-            this.labelNombreSaisons.Size = new System.Drawing.Size(332, 28);
+            this.labelNombreSaisons.Size = new System.Drawing.Size(381, 28);
             this.labelNombreSaisons.TabIndex = 21;
             this.labelNombreSaisons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -203,7 +204,7 @@ namespace VidéoThèque
             this.labelStatutDeProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStatutDeProduction.Location = new System.Drawing.Point(505, 150);
             this.labelStatutDeProduction.Name = "labelStatutDeProduction";
-            this.labelStatutDeProduction.Size = new System.Drawing.Size(332, 28);
+            this.labelStatutDeProduction.Size = new System.Drawing.Size(381, 28);
             this.labelStatutDeProduction.TabIndex = 20;
             this.labelStatutDeProduction.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -213,7 +214,7 @@ namespace VidéoThèque
             this.labelNombreDeVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreDeVotes.Location = new System.Drawing.Point(505, 178);
             this.labelNombreDeVotes.Name = "labelNombreDeVotes";
-            this.labelNombreDeVotes.Size = new System.Drawing.Size(332, 28);
+            this.labelNombreDeVotes.Size = new System.Drawing.Size(381, 28);
             this.labelNombreDeVotes.TabIndex = 19;
             this.labelNombreDeVotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -221,9 +222,9 @@ namespace VidéoThèque
             // 
             this.labelSynopsis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelSynopsis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSynopsis.Location = new System.Drawing.Point(363, 266);
+            this.labelSynopsis.Location = new System.Drawing.Point(363, 243);
             this.labelSynopsis.Name = "labelSynopsis";
-            this.labelSynopsis.Size = new System.Drawing.Size(474, 266);
+            this.labelSynopsis.Size = new System.Drawing.Size(523, 266);
             this.labelSynopsis.TabIndex = 25;
             this.labelSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -231,7 +232,7 @@ namespace VidéoThèque
             // 
             this.BoutonAjouterAyxFavoris.Location = new System.Drawing.Point(712, 9);
             this.BoutonAjouterAyxFavoris.Name = "BoutonAjouterAyxFavoris";
-            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(125, 53);
+            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(174, 53);
             this.BoutonAjouterAyxFavoris.TabIndex = 26;
             this.BoutonAjouterAyxFavoris.Text = "Ajouter aux favoris";
             this.BoutonAjouterAyxFavoris.UseVisualStyleBackColor = true;
@@ -239,7 +240,7 @@ namespace VidéoThèque
             // 
             // AffichageResumeSerie
             // 
-            this.ClientSize = new System.Drawing.Size(846, 544);
+            this.ClientSize = new System.Drawing.Size(898, 518);
             this.Controls.Add(this.BoutonAjouterAyxFavoris);
             this.Controls.Add(this.labelSynopsis);
             this.Controls.Add(this.labelMoyenneDesVotes);
@@ -256,12 +257,17 @@ namespace VidéoThèque
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AffichageResumeSerie";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
-
+        /// <summary>
+        /// Evenement quand on click sur le bouton Ajouter aux favoris
+        /// </summary>
         private void BoutonAjouterAyxFavoris_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

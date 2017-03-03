@@ -60,6 +60,10 @@ namespace VidéoThèque
         }
 
         public List<RootObjectFilm> tttt;
+        /// <summary>
+        /// Sérialisation d'un objet pour le mettre dans un fichier json
+        /// </summary>
+        /// <param name="test">Objet "ObjetDataGridView</param>
         public  void Serialisation(ObjetsDataGridView test)
         {
             Deserialiser();
@@ -75,7 +79,9 @@ namespace VidéoThèque
             sw.WriteLine(s2);
             sw.Close();
         }
-
+        /// <summary>
+        /// Désérialisation d'un fichier Json
+        /// </summary>
         public void Deserialiser()
         {
             tttt = new List<RootObjectFilm>();

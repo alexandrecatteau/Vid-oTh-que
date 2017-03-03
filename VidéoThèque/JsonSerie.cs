@@ -146,41 +146,5 @@ namespace VidéoThèque
             }
             return retour;
         }
-        /// <summary>
-        /// Tri la liste des séries par année en les téléchargents 
-        /// </summary>
-        /// <returns>Liste de IEnumerable qui est triée par Nombre de vote</returns>
-        private IEnumerable<ObjetsDataGridView> trieNombreDeVote()
-        {
-            List<ObjetsDataGridView> test = new List<ObjetsDataGridView>();
-            for (int i = 1; i <= ro.total_pages; i++)
-            {
-                WebClient wc1Client = new WebClient();
-                wc1Client.Encoding = Encoding.UTF8;
-                if (i%39 == 0)
-                {
-                    System.Threading.Thread.Sleep(5000);
-                }
-                string json = wc1Client.DownloadString(lienAPI + "&first_air_date_year=" + annee + "&page=" + i.ToString());
-                RootObject root = JsonConvert.DeserializeObject<RootObject>(json);
-
-
-                //root.results.OrderBy(v => v.vote_count);
-
-                for (int j = 0; j < root.results.Count; j++)
-                {
-                    test.Add(new ObjetsDataGridView( root.results[j].name.ToString(), root.results[j].genre_ids.ToString(), root.results[j].vote_count.ToString(), root.results[j].popularity.ToString(), root.total_pages.ToString(), root.results[j].id.ToString(), root.total_results.ToString()));
-                }
-            }
-            IOrderedEnumerable<ObjetsDataGridView> test1 = test.OrderBy(v => Convert.ToInt32(v.Vote));
-            IEnumerable<ObjetsDataGridView> test2 = test1.Reverse();
-            foreach (var VARIABLE in test2)
-            {
-                Debug.Print(VARIABLE.Nom);
-            }
-            return test2;
-        }
-        
-        
     }
 }

@@ -195,6 +195,7 @@ namespace VidéoThèque
             // 
             // BoutonFavoris
             // 
+            this.BoutonFavoris.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BoutonFavoris.Location = new System.Drawing.Point(1084, 13);
             this.BoutonFavoris.Name = "BoutonFavoris";
             this.BoutonFavoris.Size = new System.Drawing.Size(238, 35);
@@ -223,6 +224,7 @@ namespace VidéoThèque
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AffichagePrincipal";
             this.Text = "AffichagePrincipal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

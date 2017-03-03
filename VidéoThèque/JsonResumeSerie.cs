@@ -95,9 +95,14 @@ namespace VidéoThèque
             string json = wc.DownloadString("https://api.themoviedb.org/3/tv/" + id + "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR").Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0");
             ro = JsonConvert.DeserializeObject<RootObject>(json.Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0"));
         }
+        /// <summary>
+        /// Création des objets pour mettre dans la DGV
+        /// </summary>
+        /// <returns></returns>
         public ObjetsDataGridView CreationObjet()
         {
             string enCoursDeProduction = null;
+            ///Remplace un boléen par un string
             if (ro.in_production == true)
             {
                 enCoursDeProduction = "En cours de production";
@@ -111,6 +116,10 @@ namespace VidéoThèque
             return odgv;
         }
         public List<RootObjectSerie> tttt;
+        /// <summary>
+        /// Sérialisation d'un objet pour le mettre dans un fichier json
+        /// </summary>
+        /// <param name="test">Objet "ObjetDataGridView</param>
         public void Serialisation(ObjetsDataGridView test)
         {
             Deserialiser();
@@ -126,7 +135,9 @@ namespace VidéoThèque
             sw.WriteLine(s2);
             sw.Close();
         }
-
+        /// <summary>
+        /// Désérialisation d'un fichier Json
+        /// </summary>
         public void Deserialiser()
         {
             tttt = new List<RootObjectSerie>();
