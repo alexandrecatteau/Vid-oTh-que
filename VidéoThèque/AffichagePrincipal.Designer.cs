@@ -54,6 +54,7 @@ namespace VidéoThèque
             // 
             this.treeViewFilmSeries.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeViewFilmSeries.BackColor = System.Drawing.Color.DarkGray;
             this.treeViewFilmSeries.Cursor = System.Windows.Forms.Cursors.Hand;
             this.treeViewFilmSeries.Location = new System.Drawing.Point(12, 12);
             this.treeViewFilmSeries.Name = "treeViewFilmSeries";
@@ -208,6 +209,7 @@ namespace VidéoThèque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1336, 575);
             this.Controls.Add(this.BoutonFavoris);
             this.Controls.Add(this.LabelNombreDeResultats);

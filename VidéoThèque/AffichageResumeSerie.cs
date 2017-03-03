@@ -43,7 +43,7 @@ namespace VidéoThèque
             }
             catch (Exception)
             {
-                pictureBox1.Load(@"E:\documents\Visual Studio\VidéoThèque\VidéoThèque\Images\Image non trouvé.jpg");
+                pictureBox1.Load(@".\Images\Image non trouvé.jpg");
             }
             labelAffichageTitre.Text = odgv.NomSerie;
             labelMoyenneDesVotes.Text = odgv.MoyenneDesVotesSerie;
@@ -240,6 +240,7 @@ namespace VidéoThèque
             // 
             // AffichageResumeSerie
             // 
+            this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(898, 518);
             this.Controls.Add(this.BoutonAjouterAyxFavoris);
             this.Controls.Add(this.labelSynopsis);

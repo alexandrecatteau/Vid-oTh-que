@@ -75,7 +75,7 @@ namespace VidéoThèque
             }
             tttt.Add(rrr);
             string s2 = JsonConvert.SerializeObject(tttt);
-            StreamWriter sw = new StreamWriter(@".\Serialisation\filmsFavoris.json", false);
+            StreamWriter sw = new StreamWriter(@".\filmsFavoris.json", false);
             sw.WriteLine(s2);
             sw.Close();
         }
@@ -85,7 +85,7 @@ namespace VidéoThèque
         public void Deserialiser()
         {
             tttt = new List<RootObjectFilm>();
-            StreamReader sr = new StreamReader(@".\Serialisation\filmsFavoris.json");
+            StreamReader sr = new StreamReader(@".\filmsFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
             

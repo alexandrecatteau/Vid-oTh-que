@@ -92,7 +92,9 @@ namespace VidéoThèque
             this.id = id;
             WebClient wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
-            string json = wc.DownloadString("https://api.themoviedb.org/3/tv/" + id + "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR").Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0");
+            string json = wc.DownloadString("https://api.themoviedb.org/3/tv/" + id + "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR")
+                .Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0");
+
             ro = JsonConvert.DeserializeObject<RootObject>(json.Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0"));
         }
         /// <summary>
@@ -131,7 +133,7 @@ namespace VidéoThèque
             }
             tttt.Add(rrr);
             string s2 = JsonConvert.SerializeObject(tttt);
-            StreamWriter sw = new StreamWriter(@".\Serialisation\seriesFavoris.json", false);
+            StreamWriter sw = new StreamWriter(@".\seriesFavoris.json", false);
             sw.WriteLine(s2);
             sw.Close();
         }
@@ -141,7 +143,7 @@ namespace VidéoThèque
         public void Deserialiser()
         {
             tttt = new List<RootObjectSerie>();
-            StreamReader sr = new StreamReader(@".\Serialisation\seriesFavoris.json");
+            StreamReader sr = new StreamReader(@".\seriesFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
 

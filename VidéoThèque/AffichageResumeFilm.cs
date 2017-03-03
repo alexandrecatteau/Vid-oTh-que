@@ -310,6 +310,7 @@ namespace VidéoThèque
             // 
             // AffichageResumeFilm
             // 
+            this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(865, 479);
             this.Controls.Add(this.BoutonAjouterAuxFavoris);
             this.Controls.Add(this.labelAffichageSynopsis);
@@ -337,6 +338,7 @@ namespace VidéoThèque
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+
         }
         /// <summary>
         /// Evénement quand on click sur le bouton favoris

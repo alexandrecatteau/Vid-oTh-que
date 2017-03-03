@@ -35,7 +35,7 @@ namespace VidéoThèque
         /// </summary>
         private void RemplissageDTVFilms()
         {
-            StreamReader sr = new StreamReader(@".\Serialisation\filmsFavoris.json");
+            StreamReader sr = new StreamReader(@".\filmsFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
             if (json != "")
@@ -55,7 +55,7 @@ namespace VidéoThèque
         /// </summary>
         private void RemplissageDGVSeries()
         {
-            StreamReader sr = new StreamReader(@".\Serialisation\seriesFavoris.json");
+            StreamReader sr = new StreamReader(@".\seriesFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
 
@@ -252,6 +252,7 @@ namespace VidéoThèque
             // 
             // AffichageFavoris
             // 
+            this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1367, 525);
             this.Controls.Add(this.labelSerie);
             this.Controls.Add(this.labelFilm);
@@ -284,6 +285,7 @@ namespace VidéoThèque
                         AffichageResumeFilm arf = new AffichageResumeFilm(odgv);
                         arf.BoutonAjouterAuxFavoris.Enabled = false;
                         arf.ShowDialog();
+                        break;
                     }
                 }
             }
@@ -303,6 +305,7 @@ namespace VidéoThèque
                         AffichageResumeSerie ars = new AffichageResumeSerie(odgv);
                         ars.BoutonAjouterAyxFavoris.Enabled = false;
                         ars.ShowDialog();
+                        break;
                     }
                 }
             }
