@@ -120,6 +120,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\Serialisation\filmsFavoris.json" />
+    <None Include="bin\Debug\Serialisation\seriesFavoris.json" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -131,6 +133,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Serialisation\filmsFavoris.json" />
+    <None Include="Serialisation\seriesFavoris.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
