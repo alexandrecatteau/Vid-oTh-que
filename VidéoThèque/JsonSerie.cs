@@ -8,6 +8,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Net.TMDb;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace VidéoThèque
 {
@@ -91,11 +92,18 @@ namespace VidéoThèque
             this.lienAPI = lienApi;
             this.annee = annee;
             this.page = page;
-            WebClient wc = new WebClient();
-            wc.Encoding = Encoding.UTF8;
-            string json = wc.DownloadString(
-                lienApi + "&first_air_date_year=" + annee + "&page=" + page);
-            ro = JsonConvert.DeserializeObject<RootObject>(json);
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.Encoding = Encoding.UTF8;
+                string json = wc.DownloadString(
+                    lienApi + "&first_air_date_year=" + annee + "&page=" + page);
+                ro = JsonConvert.DeserializeObject<RootObject>(json);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         /// <summary>
@@ -104,22 +112,29 @@ namespace VidéoThèque
         /// <returns>Une liste d'objets</returns>
         public List<ObjetsDataGridView> CreationObjets()
         {
-            WebClient wc1Client = new WebClient();
-            wc1Client.Encoding = Encoding.UTF8;
-            string json =
-                wc1Client.DownloadString(
-                    "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
-            RootObjectGenre rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
             List<ObjetsDataGridView> objetsDataGridView = new List<ObjetsDataGridView>();
-            for (int i = 0; i < ro.results.Count; i++)
+            try
             {
-                List<string> genreList = Genres(ro.results[i].genre_ids, rog);
-                string genreString = null;
-                for (int j = 0; j < genreList.Count; j++)
+                WebClient wc1Client = new WebClient();
+                wc1Client.Encoding = Encoding.UTF8;
+                string json =
+                    wc1Client.DownloadString(
+                        "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
+                RootObjectGenre rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
+                for (int i = 0; i < ro.results.Count; i++)
                 {
-                    genreString += genreList[j] + ", ";
+                    List<string> genreList = Genres(ro.results[i].genre_ids, rog);
+                    string genreString = null;
+                    for (int j = 0; j < genreList.Count; j++)
+                    {
+                        genreString += genreList[j] + ", ";
+                    }
+                    objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].name.ToString(), genreString, ro.results[i].vote_average.ToString(), ro.results[i].popularity.ToString(), ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));
                 }
-                objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].name.ToString(), genreString, ro.results[i].vote_average.ToString(),ro.results[i].popularity.ToString(), ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
             return objetsDataGridView;
         }
