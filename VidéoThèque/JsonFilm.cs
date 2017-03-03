@@ -92,7 +92,10 @@ namespace VidéoThèque
                 {
                     genreString += genreList[j] + ", ";
                 }
-                genreString = genreString.Substring(0, genreString.Length - 2);
+                if (genreString != null)
+                {
+                    genreString = genreString.Substring(0, genreString.Length - 2); 
+                }
                 objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].original_title.ToString(), 
                     genreString, ro.results[i].vote_count.ToString(), ro.results[i].popularity.ToString(), 
                     ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));

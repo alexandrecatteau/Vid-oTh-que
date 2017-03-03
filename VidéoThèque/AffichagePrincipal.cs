@@ -130,7 +130,7 @@ namespace VidéoThèque
             {
                 if (couleurFont != null && couleurText != null)
                 {
-                    couleurFont.BackColor = Color.White;
+                    couleurFont.BackColor = Color.DarkGray;
                     couleurText.ForeColor = Color.Black; 
                 }
                 couleurFont = e.Node;
@@ -148,7 +148,7 @@ namespace VidéoThèque
             {
                 if (couleurFont != null && couleurText != null)
                 {
-                    couleurFont.BackColor = Color.White;
+                    couleurFont.BackColor = Color.DarkGray;
                     couleurText.ForeColor = Color.Black;
                 }
                 couleurFont = e.Node;
