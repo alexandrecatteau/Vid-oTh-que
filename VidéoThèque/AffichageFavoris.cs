@@ -30,14 +30,17 @@ namespace VidéoThèque
             StreamReader sr = new StreamReader(@".\Serialisation\filmsFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Nom du film");
-            rof = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
-            for (int i = 0; i < rof.Count; i++)
+            if (json != "")
             {
-                dt.Rows.Add(rof[i].Nom1);
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nom du film");
+                rof = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
+                for (int i = 0; i < rof.Count; i++)
+                {
+                    dt.Rows.Add(rof[i].Nom1);
+                }
+                dataGridViewFilms.DataSource = dt; 
             }
-            dataGridViewFilms.DataSource = dt;
         }
 
         private void RemplissageDGVSeries()
@@ -45,14 +48,18 @@ namespace VidéoThèque
             StreamReader sr = new StreamReader(@".\Serialisation\seriesFavoris.json");
             string json = sr.ReadToEnd();
             sr.Close();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Nom de la série");
-            ros = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
-            for (int i = 0; i < ros.Count; i++)
+
+            if (json != "")
             {
-                dt.Rows.Add(ros[i].NomSerie);
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nom de la série");
+                ros = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
+                for (int i = 0; i < ros.Count; i++)
+                {
+                    dt.Rows.Add(ros[i].NomSerie);
+                }
+                dataGridViewSeries.DataSource = dt; 
             }
-            dataGridViewSeries.DataSource = dt;
         }
 
         public class RootObjectFilm

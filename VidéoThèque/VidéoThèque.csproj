@@ -131,8 +131,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Serialisation\filmsFavoris.json" />
-    <None Include="Serialisation\seriesFavoris.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
