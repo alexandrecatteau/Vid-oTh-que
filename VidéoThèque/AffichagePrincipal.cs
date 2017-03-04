@@ -89,7 +89,7 @@ namespace VidéoThèque
                 LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat;
                 var dt = new DataTable();
                 dt.Columns.Add("Nom");
-                dt.Columns.Add("Genre");
+                dt.Columns.Add("GenreSeries");
                 dt.Columns.Add("Nombre de Votes");
                 dt.Columns.Add("Popularité");
 
@@ -122,7 +122,7 @@ namespace VidéoThèque
                 LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat;
                 var dt = new DataTable();
                 dt.Columns.Add("Nom");
-                dt.Columns.Add("Genre");
+                dt.Columns.Add("GenreSeries");
                 dt.Columns.Add("Moyenne des Votes");
                 dt.Columns.Add("Popularité");
                 foreach (var v in objetsDataGridView)

@@ -16,7 +16,7 @@
         ///     Objets crées dans les class Json pour ensuite les afficher dans le DGV AffichagePrincipal
         /// </summary>
         /// <param name="nom">Nom du film ou de la série</param>
-        /// <param name="genre">Genre du film ou de la série</param>
+        /// <param name="genre">GenreSeries du film ou de la série</param>
         /// <param name="vote">Nombre de votes du film ou de la série</param>
         /// <param name="popularite">Popularité du film ou de la série</param>
         /// <param name="maxPage">Maximum de page pour les films ou les séries</param>

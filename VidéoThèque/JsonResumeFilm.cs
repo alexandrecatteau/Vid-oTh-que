@@ -109,7 +109,7 @@ namespace VidéoThèque
             // public string backdrop_path { get; set; }
             // public object belongs_to_collection { get; set; }
             public int budget { get; set; }
-            //public List<Genre> genres { get; set; }
+            //public List<GenreSeries> genres { get; set; }
             //public string homepage { get; set; }
             public int id { get; set; }
             //public string imdb_id { get; set; }

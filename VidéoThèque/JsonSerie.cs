@@ -1,13 +1,60 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
+    #region Objets Json
+
+    public class GenreSeries
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+    }
+
+    public class RootObjectGenreSeries
+    {
+        public List<GenreSeries> genres { get; set; }
+    }
+
+    public class ResultSeries
+    {
+        public string poster_path { get; set; }
+        public double popularity { get; set; }
+        public int id { get; set; }
+        public string backdrop_path { get; set; }
+        public double vote_average { get; set; }
+        public string overview { get; set; }
+        public string first_air_date { get; set; }
+        public List<string> origin_country { get; set; }
+        public List<int> genre_ids { get; set; }
+        public string original_language { get; set; }
+        public int vote_count { get; set; }
+        public string name { get; set; }
+        public string original_name { get; set; }
+    }
+    /// <summary>
+    /// test
+    /// </summary>
+    public class RootObjectSeries
+    {
+        public RootObjectSeries()
+        {
+
+        }
+        public int page { get; set; }
+        public List<ResultSeries> results { get; set; }
+        public int total_results { get; set; }
+        public int total_pages { get; set; }
+    }
+
+    #endregion
     internal class JsonSerie
     {
-        private readonly RootObject ro;
+        private RootObjectSeries ro;
+        private RootObjectGenreSeries gs;
         private string lienAPI;
 
         /// <summary>
@@ -25,7 +72,7 @@ namespace VidéoThèque
             wc.Encoding = Encoding.UTF8;
             var json = wc.DownloadString(
                 lienApi + "&first_air_date_year=" + annee + "&page=" + page);
-            ro = JsonConvert.DeserializeObject<RootObject>(json);
+            ro = JsonConvert.DeserializeObject<RootObjectSeries>(json);
         }
 
         /// <summary>
@@ -40,7 +87,7 @@ namespace VidéoThèque
             var json =
                 wc1Client.DownloadString(
                     "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
-            var rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
+            var rog = JsonConvert.DeserializeObject<RootObjectGenreSeries>(json);
             for (var i = 0; i < ro.results.Count; i++)
             {
                 var genreList = Genres(ro.results[i].genre_ids, rog);
@@ -60,7 +107,7 @@ namespace VidéoThèque
         /// <param name="i">int qui correspond on genre</param>
         /// <param name="rog">Objet json</param>
         /// <returns>Une liste avec les genres d'une série</returns>
-        public List<string> Genres(List<int> i, RootObjectGenre rog)
+        public List<string> Genres(List<int> i, RootObjectGenreSeries rog)
         {
             var retour = new List<string>();
 
@@ -77,46 +124,34 @@ namespace VidéoThèque
 
         public int Page { get; set; }
 
-        #endregion
-
-        #region Objets Json
-
-        public class Genre
+        public RootObjectSeries Ro
         {
-            public int id { get; set; }
-            public string name { get; set; }
+            get
+            {
+                return ro;
+            }
+
+            set
+            {
+                ro = value;
+            }
         }
 
-        public class RootObjectGenre
+        public RootObjectGenreSeries Gs
         {
-            public List<Genre> genres { get; set; }
-        }
+            get
+            {
+                return gs;
+            }
 
-        public class Result
-        {
-            public string poster_path { get; set; }
-            public double popularity { get; set; }
-            public int id { get; set; }
-            public string backdrop_path { get; set; }
-            public double vote_average { get; set; }
-            public string overview { get; set; }
-            public string first_air_date { get; set; }
-            public List<string> origin_country { get; set; }
-            public List<int> genre_ids { get; set; }
-            public string original_language { get; set; }
-            public int vote_count { get; set; }
-            public string name { get; set; }
-            public string original_name { get; set; }
-        }
-
-        public class RootObject
-        {
-            public int page { get; set; }
-            public List<Result> results { get; set; }
-            public int total_results { get; set; }
-            public int total_pages { get; set; }
+            set
+            {
+                gs = value;
+            }
         }
 
         #endregion
+
+
     }
 }
