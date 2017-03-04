@@ -1,35 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
-    class JsonResumeFilm
+    internal class JsonResumeFilm
     {
-        private string id;
-        private RootObject ro;
+        private readonly RootObject ro;
+
+        public List<RootObjectFilm> tttt;
+
         /// <summary>
-        /// Connexion à l'API pour afficher le résumé
+        ///     Connexion à l'API pour afficher le résumé
         /// </summary>
         /// <param name="id">
-        /// ID du film
+        ///     ID du film
         /// </param>
-
         public JsonResumeFilm(string id)
         {
-            this.id = id;
+            Id = id;
             try
             {
-                WebClient wc = new WebClient();
+                var wc = new WebClient();
                 wc.Encoding = Encoding.UTF8;
-                string json =
+                var json =
                     wc.DownloadString("https://api.themoviedb.org/3/movie/" + id +
                                       "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
 
@@ -44,69 +43,70 @@ namespace VidéoThèque
                     Replace("\"vote_count\":null", "\"vote_count\":0").
                     Replace("\"vote_average\":null", "\"vote_average\":0").
                     Replace("\"revenue\":null", "\"revenue\":0")
-                    );
+                );
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-            
         }
 
         public JsonResumeFilm()
         {
-            
         }
+
+        public string Id { get; set; }
+
         /// <summary>
-        /// Création des objets pour ensuite les mettres dans AffichageResume
+        ///     Création des objets pour ensuite les mettres dans AffichageResume
         /// </summary>
         /// <returns>Objet ObjetsDataGridView</returns>
         public ObjetsDataGridView creationDObjet()
         {
-            ObjetsDataGridView odgv = new ObjetsDataGridView(ro.title.ToString(), ro.poster_path.ToString(), ro.tagline.ToString(), ro.original_title.ToString(), ro.release_date.ToString(), ro.runtime.ToString(), ro.vote_count.ToString(), ro.vote_average.ToString(), ro.budget.ToString(), ro.revenue.ToString(), ro.overview.ToString());
+            var odgv = new ObjetsDataGridView(ro.title, ro.poster_path, ro.tagline, ro.original_title, ro.release_date,
+                ro.runtime.ToString(), ro.vote_count.ToString(), ro.vote_average.ToString(), ro.budget.ToString(),
+                ro.revenue.ToString(), ro.overview);
             return odgv;
         }
 
-        public List<RootObjectFilm> tttt;
         /// <summary>
-        /// Sérialisation d'un objet pour le mettre dans un fichier json
+        ///     Sérialisation d'un objet pour le mettre dans un fichier json
         /// </summary>
         /// <param name="test">Objet "ObjetDataGridView</param>
-        public  void Serialisation(ObjetsDataGridView test)
+        public void Serialisation(ObjetsDataGridView test)
         {
             Deserialiser();
-            string s1 = JsonConvert.SerializeObject(test);
-            RootObjectFilm rrr = JsonConvert.DeserializeObject<RootObjectFilm>(s1);
+            var s1 = JsonConvert.SerializeObject(test);
+            var rrr = JsonConvert.DeserializeObject<RootObjectFilm>(s1);
             if (tttt == null)
-            {
                 tttt = new List<RootObjectFilm>();
-            }
             tttt.Add(rrr);
-            string s2 = JsonConvert.SerializeObject(tttt);
-            StreamWriter sw = new StreamWriter(@".\filmsFavoris.json", false);
+            var s2 = JsonConvert.SerializeObject(tttt);
+            var sw = new StreamWriter(@".\filmsFavoris.json", false);
             sw.WriteLine(s2);
             sw.Close();
         }
+
         /// <summary>
-        /// Désérialisation d'un fichier Json
+        ///     Désérialisation d'un fichier Json
         /// </summary>
         public void Deserialiser()
         {
             tttt = new List<RootObjectFilm>();
-            StreamReader sr = new StreamReader(@".\filmsFavoris.json");
-            string json = sr.ReadToEnd();
+            var sr = new StreamReader(@".\filmsFavoris.json");
+            var json = sr.ReadToEnd();
             sr.Close();
-            
+
             tttt = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
         }
-      
+
         #region Objets Json désérialisation API
 
         public class RootObject
         {
             //public bool adult { get; set; }
-           // public string backdrop_path { get; set; }
-           // public object belongs_to_collection { get; set; }
+            // public string backdrop_path { get; set; }
+            // public object belongs_to_collection { get; set; }
             public int budget { get; set; }
             //public List<Genre> genres { get; set; }
             //public string homepage { get; set; }
@@ -120,7 +120,7 @@ namespace VidéoThèque
             //public List<ProductionCompany> production_companies { get; set; }
             //public List<ProductionCountry> production_countries { get; set; }
             public string release_date { get; set; }
-            public Int64 revenue { get; set; }
+            public long revenue { get; set; }
             public int runtime { get; set; }
             //public List<SpokenLanguage> spoken_languages { get; set; }
             public string status { get; set; }
@@ -130,6 +130,7 @@ namespace VidéoThèque
             public double vote_average { get; set; }
             public int vote_count { get; set; }
         }
+
         #endregion
 
         #region Objets Json sérialisation
@@ -166,18 +167,5 @@ namespace VidéoThèque
         }
 
         #endregion
-
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
     }
 }

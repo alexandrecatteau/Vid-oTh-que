@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
     /// <summary>
-    /// Fenetre pour afficher les favoris
+    ///     Fenetre pour afficher les favoris
     /// </summary>
-    class AffichageFavoris : Form
+    internal class AffichageFavoris : Form
     {
         private DataGridView dataGridViewFilms;
         private DataGridView dataGridViewSeries;
@@ -21,8 +20,9 @@ namespace VidéoThèque
         private Label labelSerie;
         private List<RootObjectFilm> rof;
         private List<RootObjectSerie> ros;
+
         /// <summary>
-        /// Constructeur
+        ///     Constructeur
         /// </summary>
         public AffichageFavoris()
         {
@@ -30,25 +30,24 @@ namespace VidéoThèque
             RemplissageDTVFilms();
             RemplissageDGVSeries();
         }
+
         /// <summary>
-        /// Remplissage de la DGV Films à partir du fichier .json
+        ///     Remplissage de la DGV Films à partir du fichier .json
         /// </summary>
         private void RemplissageDTVFilms()
         {
             try
             {
-                StreamReader sr = new StreamReader(@".\filmsFavoris.json");
-                string json = sr.ReadToEnd();
+                var sr = new StreamReader(@".\filmsFavoris.json");
+                var json = sr.ReadToEnd();
                 sr.Close();
                 if (json != "")
                 {
-                    DataTable dt = new DataTable();
+                    var dt = new DataTable();
                     dt.Columns.Add("Nom du film");
                     rof = JsonConvert.DeserializeObject<List<RootObjectFilm>>(json);
-                    for (int i = 0; i < rof.Count; i++)
-                    {
+                    for (var i = 0; i < rof.Count; i++)
                         dt.Rows.Add(rof[i].Nom1);
-                    }
                     dataGridViewFilms.DataSource = dt;
                 }
             }
@@ -57,26 +56,25 @@ namespace VidéoThèque
                 MessageBox.Show(e.Message);
             }
         }
+
         /// <summary>
-        /// Affichage de la DGV Serie à partir du fichier .json
+        ///     Affichage de la DGV Serie à partir du fichier .json
         /// </summary>
         private void RemplissageDGVSeries()
         {
             try
             {
-                StreamReader sr = new StreamReader(@".\seriesFavoris.json");
-                string json = sr.ReadToEnd();
+                var sr = new StreamReader(@".\seriesFavoris.json");
+                var json = sr.ReadToEnd();
                 sr.Close();
 
                 if (json != "")
                 {
-                    DataTable dt = new DataTable();
+                    var dt = new DataTable();
                     dt.Columns.Add("Nom de la série");
                     ros = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
-                    for (int i = 0; i < ros.Count; i++)
-                    {
+                    for (var i = 0; i < ros.Count; i++)
                         dt.Rows.Add(ros[i].NomSerie);
-                    }
                     dataGridViewSeries.DataSource = dt;
                 }
             }
@@ -84,6 +82,189 @@ namespace VidéoThèque
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        /// <summary>
+        ///     Initialisation des composants de la fenetre
+        /// </summary>
+        private void InitializeComponent()
+        {
+            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            var resources = new ComponentResourceManager(typeof(AffichageFavoris));
+            dataGridViewFilms = new DataGridView();
+            dataGridViewSeries = new DataGridView();
+            labelFilm = new Label();
+            labelSerie = new Label();
+            ((ISupportInitialize) dataGridViewFilms).BeginInit();
+            ((ISupportInitialize) dataGridViewSeries).BeginInit();
+            SuspendLayout();
+            // 
+            // dataGridViewFilms
+            // 
+            dataGridViewFilms.AllowUserToAddRows = false;
+            dataGridViewFilms.AllowUserToDeleteRows = false;
+            dataGridViewFilms.AllowUserToResizeColumns = false;
+            dataGridViewFilms.AllowUserToResizeRows = false;
+            dataGridViewFilms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
+                                       | AnchorStyles.Left;
+            dataGridViewFilms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold | FontStyle.Underline,
+                GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewFilms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewFilms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewFilms.Location = new Point(12, 66);
+            dataGridViewFilms.MultiSelect = false;
+            dataGridViewFilms.Name = "dataGridViewFilms";
+            dataGridViewFilms.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point,
+                0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewFilms.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewFilms.RowHeadersVisible = false;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewFilms.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewFilms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewFilms.Size = new Size(668, 447);
+            dataGridViewFilms.TabIndex = 0;
+            dataGridViewFilms.CellDoubleClick += dataGridViewFilms_CellDoubleClick;
+            // 
+            // dataGridViewSeries
+            // 
+            dataGridViewSeries.AllowUserToAddRows = false;
+            dataGridViewSeries.AllowUserToDeleteRows = false;
+            dataGridViewSeries.AllowUserToResizeColumns = false;
+            dataGridViewSeries.AllowUserToResizeRows = false;
+            dataGridViewSeries.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
+                                        | AnchorStyles.Right;
+            dataGridViewSeries.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold | FontStyle.Underline,
+                GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridViewSeries.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewSeries.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewSeries.Location = new Point(686, 66);
+            dataGridViewSeries.MultiSelect = false;
+            dataGridViewSeries.Name = "dataGridViewSeries";
+            dataGridViewSeries.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point,
+                0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewSeries.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewSeries.RowHeadersVisible = false;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewSeries.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewSeries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewSeries.Size = new Size(668, 447);
+            dataGridViewSeries.TabIndex = 1;
+            dataGridViewSeries.CellDoubleClick += dataGridViewSeries_CellDoubleClick;
+            // 
+            // labelFilm
+            // 
+            labelFilm.Anchor = AnchorStyles.Top;
+            labelFilm.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold | FontStyle.Underline,
+                GraphicsUnit.Point, 0);
+            labelFilm.Location = new Point(12, 13);
+            labelFilm.Name = "labelFilm";
+            labelFilm.Size = new Size(668, 50);
+            labelFilm.TabIndex = 2;
+            labelFilm.Text = "Films";
+            labelFilm.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // labelSerie
+            // 
+            labelSerie.Anchor = AnchorStyles.Top;
+            labelSerie.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold | FontStyle.Underline,
+                GraphicsUnit.Point, 0);
+            labelSerie.Location = new Point(688, 13);
+            labelSerie.Name = "labelSerie";
+            labelSerie.Size = new Size(667, 50);
+            labelSerie.TabIndex = 3;
+            labelSerie.Text = "Séries";
+            labelSerie.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // AffichageFavoris
+            // 
+            BackColor = Color.Gray;
+            ClientSize = new Size(1367, 525);
+            Controls.Add(labelSerie);
+            Controls.Add(labelFilm);
+            Controls.Add(dataGridViewSeries);
+            Controls.Add(dataGridViewFilms);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon) resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            Name = "AffichageFavoris";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Favoris";
+            ((ISupportInitialize) dataGridViewFilms).EndInit();
+            ((ISupportInitialize) dataGridViewSeries).EndInit();
+            ResumeLayout(false);
+        }
+
+        /// <summary>
+        ///     Affichage de la fenetre Résumé d'un film avec un double click
+        /// </summary>
+        private void dataGridViewFilms_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+                for (var i = 0; i < rof.Count; i++)
+                    if (dataGridViewFilms[0, e.RowIndex].Value.ToString() == rof[i].Nom1)
+                    {
+                        var odgv = new ObjetsDataGridView(rof[i].Nom1, rof[i].Poster, rof[i].Slogan, rof[i].TitreOrigine,
+                            rof[i].DateDeSortie, rof[i].Duree, rof[i].NombreDeVotes, rof[i].MoyenneDesVotes,
+                            rof[i].Budget, rof[i].Revenue, rof[i].Synopsis);
+                        var arf = new AffichageResumeFilm(odgv);
+                        arf.BoutonAjouterAuxFavoris.Enabled = false;
+                        arf.ShowDialog();
+                        break;
+                    }
+        }
+
+        /// <summary>
+        ///     Affichage de la fenetre Résumé d'une série avec un double click
+        /// </summary>
+        private void dataGridViewSeries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+                for (var i = 0; i < ros.Count; i++)
+                    if (dataGridViewSeries[0, e.RowIndex].Value.ToString() == ros[i].NomSerie.ToString())
+                    {
+                        var odgv = new ObjetsDataGridView(ros[i].NomSerie.ToString(),
+                            ros[i].TitreOrigineSerie.ToString(), ros[i].NombreDEpisodesSerie.ToString(),
+                            ros[i].NombreDeSaisonsSerie.ToString(), ros[i].EnCoursDeProduction.ToString(),
+                            ros[i].NombreDeVotesSerie.ToString(), ros[i].MoyenneDesVotesSerie.ToString(),
+                            ros[i].PosterSerie.ToString(), ros[i].SynopsisSerie.ToString());
+                        var ars = new AffichageResumeSerie(odgv);
+                        ars.BoutonAjouterAyxFavoris.Enabled = false;
+                        ars.ShowDialog();
+                        break;
+                    }
         }
 
         public class RootObjectFilm
@@ -116,6 +297,7 @@ namespace VidéoThèque
             public object PosterSerie { get; set; }
             public object SynopsisSerie { get; set; }
         }
+
         public class RootObjectSerie
         {
             public object Nom { get; set; }
@@ -145,184 +327,6 @@ namespace VidéoThèque
             public object MoyenneDesVotesSerie { get; set; }
             public object PosterSerie { get; set; }
             public object SynopsisSerie { get; set; }
-        }
-        /// <summary>
-        /// Initialisation des composants de la fenetre
-        /// </summary>
-        private void InitializeComponent()
-        {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffichageFavoris));
-            this.dataGridViewFilms = new System.Windows.Forms.DataGridView();
-            this.dataGridViewSeries = new System.Windows.Forms.DataGridView();
-            this.labelFilm = new System.Windows.Forms.Label();
-            this.labelSerie = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilms)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeries)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dataGridViewFilms
-            // 
-            this.dataGridViewFilms.AllowUserToAddRows = false;
-            this.dataGridViewFilms.AllowUserToDeleteRows = false;
-            this.dataGridViewFilms.AllowUserToResizeColumns = false;
-            this.dataGridViewFilms.AllowUserToResizeRows = false;
-            this.dataGridViewFilms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridViewFilms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewFilms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewFilms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFilms.Location = new System.Drawing.Point(12, 66);
-            this.dataGridViewFilms.MultiSelect = false;
-            this.dataGridViewFilms.Name = "dataGridViewFilms";
-            this.dataGridViewFilms.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewFilms.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewFilms.RowHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewFilms.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewFilms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFilms.Size = new System.Drawing.Size(668, 447);
-            this.dataGridViewFilms.TabIndex = 0;
-            this.dataGridViewFilms.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFilms_CellDoubleClick);
-            // 
-            // dataGridViewSeries
-            // 
-            this.dataGridViewSeries.AllowUserToAddRows = false;
-            this.dataGridViewSeries.AllowUserToDeleteRows = false;
-            this.dataGridViewSeries.AllowUserToResizeColumns = false;
-            this.dataGridViewSeries.AllowUserToResizeRows = false;
-            this.dataGridViewSeries.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSeries.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSeries.Location = new System.Drawing.Point(686, 66);
-            this.dataGridViewSeries.MultiSelect = false;
-            this.dataGridViewSeries.Name = "dataGridViewSeries";
-            this.dataGridViewSeries.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSeries.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewSeries.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewSeries.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewSeries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSeries.Size = new System.Drawing.Size(668, 447);
-            this.dataGridViewSeries.TabIndex = 1;
-            this.dataGridViewSeries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSeries_CellDoubleClick);
-            // 
-            // labelFilm
-            // 
-            this.labelFilm.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFilm.Location = new System.Drawing.Point(12, 13);
-            this.labelFilm.Name = "labelFilm";
-            this.labelFilm.Size = new System.Drawing.Size(668, 50);
-            this.labelFilm.TabIndex = 2;
-            this.labelFilm.Text = "Films";
-            this.labelFilm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelSerie
-            // 
-            this.labelSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSerie.Location = new System.Drawing.Point(688, 13);
-            this.labelSerie.Name = "labelSerie";
-            this.labelSerie.Size = new System.Drawing.Size(667, 50);
-            this.labelSerie.TabIndex = 3;
-            this.labelSerie.Text = "Séries";
-            this.labelSerie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // AffichageFavoris
-            // 
-            this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(1367, 525);
-            this.Controls.Add(this.labelSerie);
-            this.Controls.Add(this.labelFilm);
-            this.Controls.Add(this.dataGridViewSeries);
-            this.Controls.Add(this.dataGridViewFilms);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "AffichageFavoris";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Favoris";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilms)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeries)).EndInit();
-            this.ResumeLayout(false);
-
-        }
-        /// <summary>
-        /// Affichage de la fenetre Résumé d'un film avec un double click
-        /// </summary>
-        private void dataGridViewFilms_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                
-                for (int i = 0; i < rof.Count; i++)
-                {
-                    if (dataGridViewFilms[0, e.RowIndex].Value.ToString() == rof[i].Nom1)
-                    {
-                        ObjetsDataGridView odgv = new ObjetsDataGridView(rof[i].Nom1, rof[i].Poster, rof[i].Slogan, rof[i].TitreOrigine, rof[i].DateDeSortie, rof[i].Duree, rof[i].NombreDeVotes, rof[i].MoyenneDesVotes, rof[i].Budget, rof[i].Revenue, rof[i].Synopsis);
-                        AffichageResumeFilm arf = new AffichageResumeFilm(odgv);
-                        arf.BoutonAjouterAuxFavoris.Enabled = false;
-                        arf.ShowDialog();
-                        break;
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// Affichage de la fenetre Résumé d'une série avec un double click
-        /// </summary>
-        private void dataGridViewSeries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                for (int i = 0; i < ros.Count; i++)
-                {
-                    if (dataGridViewSeries[0, e.RowIndex].Value.ToString() == ros[i].NomSerie.ToString())
-                    {
-                        ObjetsDataGridView odgv = new ObjetsDataGridView(ros[i].NomSerie.ToString(), ros[i].TitreOrigineSerie.ToString(), ros[i].NombreDEpisodesSerie.ToString(), ros[i].NombreDeSaisonsSerie.ToString(), ros[i].EnCoursDeProduction.ToString(), ros[i].NombreDeVotesSerie.ToString(), ros[i].MoyenneDesVotesSerie.ToString(), ros[i].PosterSerie.ToString(), ros[i].SynopsisSerie.ToString());
-                        AffichageResumeSerie ars = new AffichageResumeSerie(odgv);
-                        ars.BoutonAjouterAyxFavoris.Enabled = false;
-                        ars.ShowDialog();
-                        break;
-                    }
-                }
-            }
         }
     }
 }

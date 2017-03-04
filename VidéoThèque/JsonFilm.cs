@@ -72,14 +72,15 @@ namespace VidéoThèque
                 WebClient wc = new WebClient();
                 wc.Encoding = Encoding.UTF8;
                 string json = wc.DownloadString(
-                    lienApi + "&include_adult=false&include_video=false&page="
-                    + page + "&primary_release_year=" + annee);
-
+                        lienApi + "&include_adult=false&include_video=false&page="
+                        + page + "&primary_release_year=" + annee + "sqdfgbhnj");
                 ro = JsonConvert.DeserializeObject<RootObject1>(json);
+
+
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message + e.StackTrace);
             }
         }
         /// <summary>
@@ -127,7 +128,7 @@ namespace VidéoThèque
         /// </summary>
         /// <param name="i">int qui correspond au genre</param>
         /// <param name="rog">Objet json</param>
-        /// <returns>Une liste avec les genres d'une série</returns>
+        /// <returns>Une liste avec les genres d'un film</returns>
         private List<string> Genres(List<int> listInt, RootObjectGenre rog)
         {
             List<string> retour = new List<string>();

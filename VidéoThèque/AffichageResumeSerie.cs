@@ -1,36 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
+
 ///
+
 namespace VidéoThèque
 {
     /// <summary>
-    /// Afficher le résumé d'une série au doubleclick sur le DGV
+    ///     Afficher le résumé d'une série au doubleclick sur le DGV
     /// </summary>
-    class AffichageResumeSerie : Form
+    internal class AffichageResumeSerie : Form
     {
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
+        public Button BoutonAjouterAyxFavoris;
         private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
         private Label labelAffichageTitre;
         private Label labelMoyenneDesVotes;
-        private Label labelNomOrigine;
+        private Label labelNombreDeVotes;
         private Label labelNombreEpisodes;
         private Label labelNombreSaisons;
+        private Label labelNomOrigine;
         private Label labelStatutDeProduction;
-        private Label labelNombreDeVotes;
         private Label labelSynopsis;
+        private readonly ObjetsDataGridView odgv;
         private PictureBox pictureBox1;
-        public Button BoutonAjouterAyxFavoris;
-        private ObjetsDataGridView odgv;
+
         /// <summary>
-        /// Constructeur pour afficher le résumé
+        ///     Constructeur pour afficher le résumé
         /// </summary>
         /// <param name="odgv">Objet ObjetsDataGridView</param>
         public AffichageResumeSerie(ObjetsDataGridView odgv)
@@ -54,226 +55,228 @@ namespace VidéoThèque
             labelNomOrigine.Text = odgv.TitreOrigineSerie;
             labelSynopsis.Text = odgv.SynopsisSerie;
         }
+
         /// <summary>
-        /// Initialisation des composants de la fenêtre
+        ///     Initialisation des composants de la fenêtre
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffichageResumeSerie));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelAffichageTitre = new System.Windows.Forms.Label();
-            this.labelMoyenneDesVotes = new System.Windows.Forms.Label();
-            this.labelNomOrigine = new System.Windows.Forms.Label();
-            this.labelNombreEpisodes = new System.Windows.Forms.Label();
-            this.labelNombreSaisons = new System.Windows.Forms.Label();
-            this.labelStatutDeProduction = new System.Windows.Forms.Label();
-            this.labelNombreDeVotes = new System.Windows.Forms.Label();
-            this.labelSynopsis = new System.Windows.Forms.Label();
-            this.BoutonAjouterAyxFavoris = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            var resources = new ComponentResourceManager(typeof(AffichageResumeSerie));
+            pictureBox1 = new PictureBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            labelAffichageTitre = new Label();
+            labelMoyenneDesVotes = new Label();
+            labelNomOrigine = new Label();
+            labelNombreEpisodes = new Label();
+            labelNombreSaisons = new Label();
+            labelStatutDeProduction = new Label();
+            labelNombreDeVotes = new Label();
+            labelSynopsis = new Label();
+            BoutonAjouterAyxFavoris = new Button();
+            ((ISupportInitialize) pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(341, 496);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Location = new Point(13, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(341, 496);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(360, 66);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(139, 28);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Nom d\'origine";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label7.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(360, 66);
+            label7.Name = "label7";
+            label7.Size = new Size(139, 28);
+            label7.TabIndex = 15;
+            label7.Text = "Nom d\'origine";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(360, 206);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 28);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Moyenne des votes";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label6.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(360, 206);
+            label6.Name = "label6";
+            label6.Size = new Size(139, 28);
+            label6.TabIndex = 14;
+            label6.Text = "Moyenne des votes";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(360, 178);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 28);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Nombre de votes";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(360, 178);
+            label5.Name = "label5";
+            label5.Size = new Size(139, 28);
+            label5.TabIndex = 13;
+            label5.Text = "Nombre de votes";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(360, 150);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 28);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Statut de production";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label4.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(360, 150);
+            label4.Name = "label4";
+            label4.Size = new Size(139, 28);
+            label4.TabIndex = 12;
+            label4.Text = "Statut de production";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(360, 122);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 28);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Nombre de saisons";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(360, 122);
+            label3.Name = "label3";
+            label3.Size = new Size(139, 28);
+            label3.TabIndex = 11;
+            label3.Text = "Nombre de saisons";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(360, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 28);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Nombre d\'épisodes";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(360, 94);
+            label2.Name = "label2";
+            label2.Size = new Size(139, 28);
+            label2.TabIndex = 10;
+            label2.Text = "Nombre d\'épisodes";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelAffichageTitre
             // 
-            this.labelAffichageTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAffichageTitre.Location = new System.Drawing.Point(359, 9);
-            this.labelAffichageTitre.Name = "labelAffichageTitre";
-            this.labelAffichageTitre.Size = new System.Drawing.Size(347, 53);
-            this.labelAffichageTitre.TabIndex = 18;
-            this.labelAffichageTitre.Text = "labelAffichageTitre";
-            this.labelAffichageTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelAffichageTitre.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelAffichageTitre.Location = new Point(359, 9);
+            labelAffichageTitre.Name = "labelAffichageTitre";
+            labelAffichageTitre.Size = new Size(347, 53);
+            labelAffichageTitre.TabIndex = 18;
+            labelAffichageTitre.Text = "labelAffichageTitre";
+            labelAffichageTitre.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelMoyenneDesVotes
             // 
-            this.labelMoyenneDesVotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelMoyenneDesVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMoyenneDesVotes.Location = new System.Drawing.Point(505, 206);
-            this.labelMoyenneDesVotes.Name = "labelMoyenneDesVotes";
-            this.labelMoyenneDesVotes.Size = new System.Drawing.Size(381, 28);
-            this.labelMoyenneDesVotes.TabIndex = 24;
-            this.labelMoyenneDesVotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelMoyenneDesVotes.BorderStyle = BorderStyle.FixedSingle;
+            labelMoyenneDesVotes.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelMoyenneDesVotes.Location = new Point(505, 206);
+            labelMoyenneDesVotes.Name = "labelMoyenneDesVotes";
+            labelMoyenneDesVotes.Size = new Size(381, 28);
+            labelMoyenneDesVotes.TabIndex = 24;
+            labelMoyenneDesVotes.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelNomOrigine
             // 
-            this.labelNomOrigine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelNomOrigine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomOrigine.Location = new System.Drawing.Point(505, 66);
-            this.labelNomOrigine.Name = "labelNomOrigine";
-            this.labelNomOrigine.Size = new System.Drawing.Size(381, 28);
-            this.labelNomOrigine.TabIndex = 23;
-            this.labelNomOrigine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelNomOrigine.BorderStyle = BorderStyle.FixedSingle;
+            labelNomOrigine.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelNomOrigine.Location = new Point(505, 66);
+            labelNomOrigine.Name = "labelNomOrigine";
+            labelNomOrigine.Size = new Size(381, 28);
+            labelNomOrigine.TabIndex = 23;
+            labelNomOrigine.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelNombreEpisodes
             // 
-            this.labelNombreEpisodes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelNombreEpisodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreEpisodes.Location = new System.Drawing.Point(505, 94);
-            this.labelNombreEpisodes.Name = "labelNombreEpisodes";
-            this.labelNombreEpisodes.Size = new System.Drawing.Size(381, 28);
-            this.labelNombreEpisodes.TabIndex = 22;
-            this.labelNombreEpisodes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelNombreEpisodes.BorderStyle = BorderStyle.FixedSingle;
+            labelNombreEpisodes.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelNombreEpisodes.Location = new Point(505, 94);
+            labelNombreEpisodes.Name = "labelNombreEpisodes";
+            labelNombreEpisodes.Size = new Size(381, 28);
+            labelNombreEpisodes.TabIndex = 22;
+            labelNombreEpisodes.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelNombreSaisons
             // 
-            this.labelNombreSaisons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelNombreSaisons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreSaisons.Location = new System.Drawing.Point(505, 122);
-            this.labelNombreSaisons.Name = "labelNombreSaisons";
-            this.labelNombreSaisons.Size = new System.Drawing.Size(381, 28);
-            this.labelNombreSaisons.TabIndex = 21;
-            this.labelNombreSaisons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelNombreSaisons.BorderStyle = BorderStyle.FixedSingle;
+            labelNombreSaisons.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelNombreSaisons.Location = new Point(505, 122);
+            labelNombreSaisons.Name = "labelNombreSaisons";
+            labelNombreSaisons.Size = new Size(381, 28);
+            labelNombreSaisons.TabIndex = 21;
+            labelNombreSaisons.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelStatutDeProduction
             // 
-            this.labelStatutDeProduction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelStatutDeProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatutDeProduction.Location = new System.Drawing.Point(505, 150);
-            this.labelStatutDeProduction.Name = "labelStatutDeProduction";
-            this.labelStatutDeProduction.Size = new System.Drawing.Size(381, 28);
-            this.labelStatutDeProduction.TabIndex = 20;
-            this.labelStatutDeProduction.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelStatutDeProduction.BorderStyle = BorderStyle.FixedSingle;
+            labelStatutDeProduction.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point,
+                0);
+            labelStatutDeProduction.Location = new Point(505, 150);
+            labelStatutDeProduction.Name = "labelStatutDeProduction";
+            labelStatutDeProduction.Size = new Size(381, 28);
+            labelStatutDeProduction.TabIndex = 20;
+            labelStatutDeProduction.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelNombreDeVotes
             // 
-            this.labelNombreDeVotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelNombreDeVotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreDeVotes.Location = new System.Drawing.Point(505, 178);
-            this.labelNombreDeVotes.Name = "labelNombreDeVotes";
-            this.labelNombreDeVotes.Size = new System.Drawing.Size(381, 28);
-            this.labelNombreDeVotes.TabIndex = 19;
-            this.labelNombreDeVotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelNombreDeVotes.BorderStyle = BorderStyle.FixedSingle;
+            labelNombreDeVotes.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelNombreDeVotes.Location = new Point(505, 178);
+            labelNombreDeVotes.Name = "labelNombreDeVotes";
+            labelNombreDeVotes.Size = new Size(381, 28);
+            labelNombreDeVotes.TabIndex = 19;
+            labelNombreDeVotes.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelSynopsis
             // 
-            this.labelSynopsis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelSynopsis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSynopsis.Location = new System.Drawing.Point(363, 243);
-            this.labelSynopsis.Name = "labelSynopsis";
-            this.labelSynopsis.Size = new System.Drawing.Size(523, 266);
-            this.labelSynopsis.TabIndex = 25;
-            this.labelSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelSynopsis.BorderStyle = BorderStyle.FixedSingle;
+            labelSynopsis.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelSynopsis.Location = new Point(363, 243);
+            labelSynopsis.Name = "labelSynopsis";
+            labelSynopsis.Size = new Size(523, 266);
+            labelSynopsis.TabIndex = 25;
+            labelSynopsis.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // BoutonAjouterAyxFavoris
             // 
-            this.BoutonAjouterAyxFavoris.Location = new System.Drawing.Point(712, 9);
-            this.BoutonAjouterAyxFavoris.Name = "BoutonAjouterAyxFavoris";
-            this.BoutonAjouterAyxFavoris.Size = new System.Drawing.Size(174, 53);
-            this.BoutonAjouterAyxFavoris.TabIndex = 26;
-            this.BoutonAjouterAyxFavoris.Text = "Ajouter aux favoris";
-            this.BoutonAjouterAyxFavoris.UseVisualStyleBackColor = true;
-            this.BoutonAjouterAyxFavoris.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoutonAjouterAyxFavoris_MouseClick);
+            BoutonAjouterAyxFavoris.Location = new Point(712, 9);
+            BoutonAjouterAyxFavoris.Name = "BoutonAjouterAyxFavoris";
+            BoutonAjouterAyxFavoris.Size = new Size(174, 53);
+            BoutonAjouterAyxFavoris.TabIndex = 26;
+            BoutonAjouterAyxFavoris.Text = "Ajouter aux favoris";
+            BoutonAjouterAyxFavoris.UseVisualStyleBackColor = true;
+            BoutonAjouterAyxFavoris.MouseClick += BoutonAjouterAyxFavoris_MouseClick;
             // 
             // AffichageResumeSerie
             // 
-            this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(898, 518);
-            this.Controls.Add(this.BoutonAjouterAyxFavoris);
-            this.Controls.Add(this.labelSynopsis);
-            this.Controls.Add(this.labelMoyenneDesVotes);
-            this.Controls.Add(this.labelNomOrigine);
-            this.Controls.Add(this.labelNombreEpisodes);
-            this.Controls.Add(this.labelNombreSaisons);
-            this.Controls.Add(this.labelStatutDeProduction);
-            this.Controls.Add(this.labelNombreDeVotes);
-            this.Controls.Add(this.labelAffichageTitre);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AffichageResumeSerie";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            BackColor = Color.Gray;
+            ClientSize = new Size(898, 518);
+            Controls.Add(BoutonAjouterAyxFavoris);
+            Controls.Add(labelSynopsis);
+            Controls.Add(labelMoyenneDesVotes);
+            Controls.Add(labelNomOrigine);
+            Controls.Add(labelNombreEpisodes);
+            Controls.Add(labelNombreSaisons);
+            Controls.Add(labelStatutDeProduction);
+            Controls.Add(labelNombreDeVotes);
+            Controls.Add(labelAffichageTitre);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon) resources.GetObject("$this.Icon");
+            Name = "AffichageResumeSerie";
+            StartPosition = FormStartPosition.CenterScreen;
+            ((ISupportInitialize) pictureBox1).EndInit();
+            ResumeLayout(false);
         }
+
         /// <summary>
-        /// Evenement quand on click sur le bouton Ajouter aux favoris
+        ///     Evenement quand on click sur le bouton Ajouter aux favoris
         /// </summary>
         private void BoutonAjouterAyxFavoris_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                JsonResumeSerie jsr = new JsonResumeSerie();
+                var jsr = new JsonResumeSerie();
                 jsr.Serialisation(odgv);
                 MessageBox.Show("\"" + odgv.NomSerie + "\"" + " a bien était ajouté aux favoris");
             }
