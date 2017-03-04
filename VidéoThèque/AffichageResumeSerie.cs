@@ -12,6 +12,7 @@ namespace VidéoThèque
     /// </summary>
     internal class AffichageResumeSerie : Form
     {
+        private readonly ObjetsDataGridView odgv;
         public Button BoutonAjouterAyxFavoris;
         private Label label2;
         private Label label3;
@@ -27,7 +28,6 @@ namespace VidéoThèque
         private Label labelNomOrigine;
         private Label labelStatutDeProduction;
         private Label labelSynopsis;
-        private readonly ObjetsDataGridView odgv;
         private PictureBox pictureBox1;
 
         /// <summary>

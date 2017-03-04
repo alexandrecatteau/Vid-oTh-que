@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using Newtonsoft.Json;
 using System.IO;
+using System.Net;
+using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
+
     #region Objets Json
 
     public class CreatedBy
@@ -78,26 +76,31 @@ namespace VidéoThèque
     }
 
     #endregion
-    class JsonResumeSerie
+
+    internal class JsonResumeSerie
     {
         private string id;
-        private RootObject ro;
+        private readonly RootObject ro;
+        public List<RootObjectSerie> tttt;
 
         public JsonResumeSerie()
         {
-            
         }
+
         public JsonResumeSerie(string id)
         {
             this.id = id;
             try
             {
-                WebClient wc = new WebClient();
+                var wc = new WebClient();
                 wc.Encoding = Encoding.UTF8;
-                string json = wc.DownloadString(
-                    "https://api.themoviedb.org/3/tv/" + id + "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR")
+                var json = wc.DownloadString(
+                        "https://api.themoviedb.org/3/tv/" + id +
+                        "?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR")
                     .Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0");
-                ro = JsonConvert.DeserializeObject<RootObject>(json.Replace("\"number_of_episodes\":null", "\"number_of_episodes\":0"));
+                ro =
+                    JsonConvert.DeserializeObject<RootObject>(json.Replace("\"number_of_episodes\":null",
+                        "\"number_of_episodes\":0"));
             }
             catch (Exception e)
             {
@@ -105,56 +108,53 @@ namespace VidéoThèque
                 AffichagePrincipal.EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
+
         /// <summary>
-        /// Création des objets pour mettre dans la DGV
+        ///     Création des objets pour mettre dans la DGV
         /// </summary>
         /// <returns></returns>
         public ObjetsDataGridView CreationObjet()
         {
             string enCoursDeProduction = null;
             ///Remplace un boléen par un string
-            if (ro.in_production == true)
-            {
+            if (ro.in_production)
                 enCoursDeProduction = "En cours de production";
-            }
             else
-            {
                 enCoursDeProduction = "Production terminée";
-            }
-            ObjetsDataGridView odgv = new ObjetsDataGridView(ro.name, ro.original_name, ro.number_of_episodes.ToString(), 
-                ro.number_of_seasons.ToString(), enCoursDeProduction, ro.vote_count.ToString(), ro.vote_average.ToString(), ro.poster_path, ro.overview);
+            var odgv = new ObjetsDataGridView(ro.name, ro.original_name, ro.number_of_episodes.ToString(),
+                ro.number_of_seasons.ToString(), enCoursDeProduction, ro.vote_count.ToString(),
+                ro.vote_average.ToString(), ro.poster_path, ro.overview);
             return odgv;
         }
-        public List<RootObjectSerie> tttt;
+
         /// <summary>
-        /// Sérialisation d'un objet pour le mettre dans un fichier json
+        ///     Sérialisation d'un objet pour le mettre dans un fichier json
         /// </summary>
         /// <param name="test">Objet "ObjetDataGridView</param>
         public void Serialisation(ObjetsDataGridView test)
         {
             Deserialiser();
-            string s1 = JsonConvert.SerializeObject(test);
-            RootObjectSerie rrr = JsonConvert.DeserializeObject<RootObjectSerie>(s1);
+            var s1 = JsonConvert.SerializeObject(test);
+            var rrr = JsonConvert.DeserializeObject<RootObjectSerie>(s1);
             if (tttt == null)
-            {
                 tttt = new List<RootObjectSerie>();
-            }
             tttt.Add(rrr);
-            string s2 = JsonConvert.SerializeObject(tttt);
-            StreamWriter sw = new StreamWriter(@".\seriesFavoris.json", false);
+            var s2 = JsonConvert.SerializeObject(tttt);
+            var sw = new StreamWriter(@".\seriesFavoris.json", false);
             sw.WriteLine(s2);
             sw.Close();
         }
+
         /// <summary>
-        /// Désérialisation d'un fichier Json
+        ///     Désérialisation d'un fichier Json
         /// </summary>
         public void Deserialiser()
         {
             tttt = new List<RootObjectSerie>();
             try
             {
-                StreamReader sr = new StreamReader(@".\seriesFavoris.json");
-                string json = sr.ReadToEnd();
+                var sr = new StreamReader(@".\seriesFavoris.json");
+                var json = sr.ReadToEnd();
                 sr.Close();
 
                 tttt = JsonConvert.DeserializeObject<List<RootObjectSerie>>(json);
@@ -165,7 +165,9 @@ namespace VidéoThèque
                 AffichagePrincipal.EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
+
         #region Objets Json sérialisation
+
         public class RootObjectSerie
         {
             public object Nom { get; set; }

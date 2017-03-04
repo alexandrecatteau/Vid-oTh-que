@@ -87,7 +87,7 @@ namespace VidéoThèque
         }
 
         /// <summary>
-        /// Initialisation des composants de la fenetre
+        ///     Initialisation des composants de la fenetre
         /// </summary>
         private void InitializeComponent()
         {

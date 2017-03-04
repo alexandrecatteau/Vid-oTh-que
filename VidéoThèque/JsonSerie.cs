@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
     internal class JsonSerie
     {
-        private string lienAPI;
         private readonly RootObject ro;
+        private string lienAPI;
 
         /// <summary>
         ///     Se connecte à l'API pour extraire les séries
