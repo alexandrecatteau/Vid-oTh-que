@@ -48,6 +48,7 @@ namespace VidéoThèque
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                AffichagePrincipal.EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
 

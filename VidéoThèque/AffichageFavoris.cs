@@ -54,6 +54,7 @@ namespace VidéoThèque
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                AffichagePrincipal.EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
 
@@ -81,11 +82,12 @@ namespace VidéoThèque
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                AffichagePrincipal.EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
 
         /// <summary>
-        ///     Initialisation des composants de la fenetre
+        /// Initialisation des composants de la fenetre
         /// </summary>
         private void InitializeComponent()
         {

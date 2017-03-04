@@ -67,21 +67,13 @@ namespace VidéoThèque
         {
             this.annee = annee;
             this.page = page;
-            try
-            {
-                WebClient wc = new WebClient();
-                wc.Encoding = Encoding.UTF8;
-                string json = wc.DownloadString(
-                        lienApi + "&include_adult=false&include_video=false&page="
-                        + page + "&primary_release_year=" + annee + "sqdfgbhnj");
-                ro = JsonConvert.DeserializeObject<RootObject1>(json);
+            WebClient wc = new WebClient();
+            wc.Encoding = Encoding.UTF8;
+            string json = wc.DownloadString(
+                    lienApi + "&include_adult=false&include_video=false&page="
+                    + page + "&primary_release_year=" + annee);
+            ro = JsonConvert.DeserializeObject<RootObject1>(json);
 
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message + e.StackTrace);
-            }
         }
         /// <summary>
         /// Création des objets pour mettre dans la DGV
@@ -91,36 +83,30 @@ namespace VidéoThèque
         {
 
             List<ObjetsDataGridView> objetsDataGridView = new List<ObjetsDataGridView>();
-            try
-            {
                 WebClient wc1Client = new WebClient();
                 wc1Client.Encoding = Encoding.UTF8;
                 //Téléchargement du texte Json avec tous les genres
-                string json =
-                    wc1Client.DownloadString(
-                        "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
-                RootObjectGenre rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
-                for (int i = 0; i < ro.results.Count; i++)
-                {
-                    List<string> genreList = Genres(ro.results[i].genre_ids, rog);
-                    string genreString = null;
-                    for (int j = 0; j < genreList.Count; j++)
-                    {
-                        genreString += genreList[j] + ", ";
-                    }
-                    if (genreString != null)
-                    {
-                        genreString = genreString.Substring(0, genreString.Length - 2);
-                    }
-                    objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].original_title.ToString(),
-                        genreString, ro.results[i].vote_count.ToString(), ro.results[i].popularity.ToString(),
-                        ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));
-                }
-            }
-            catch (Exception e)
+            string json =
+                wc1Client.DownloadString(
+                    "https://api.themoviedb.org/3/genre/movie/list?api_key=30666db2f7a024c11b30b58b88983362&language=fr-FR");
+            RootObjectGenre rog = JsonConvert.DeserializeObject<RootObjectGenre>(json);
+            for (int i = 0; i < ro.results.Count; i++)
             {
-                MessageBox.Show(e.Message);
+                List<string> genreList = Genres(ro.results[i].genre_ids, rog);
+                string genreString = null;
+                for (int j = 0; j < genreList.Count; j++)
+                {
+                    genreString += genreList[j] + ", ";
+                }
+                if (genreString != null)
+                {
+                    genreString = genreString.Substring(0, genreString.Length - 2);
+                }
+                objetsDataGridView.Add(new ObjetsDataGridView(ro.results[i].original_title.ToString(),
+                    genreString, ro.results[i].vote_count.ToString(), ro.results[i].popularity.ToString(),
+                    ro.total_pages.ToString(), ro.results[i].id.ToString(), ro.total_results.ToString()));
             }
+            
             return objetsDataGridView;
         }
         /// <summary>

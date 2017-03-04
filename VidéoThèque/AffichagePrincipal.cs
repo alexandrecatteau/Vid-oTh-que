@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,6 +107,7 @@ namespace VidéoThèque
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
         /// <summary>
@@ -136,6 +138,7 @@ namespace VidéoThèque
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                EcritureFichierErreur(e.Message, e.StackTrace);
             }
         }
         /// <summary>
@@ -325,43 +328,51 @@ namespace VidéoThèque
         /// </summary>
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (affichageFilms == true)
+            try
             {
-                int colonne = e.ColumnIndex;
-                int ligne = e.RowIndex;
-                if (e.RowIndex >= 0)
+                if (affichageFilms == true)
                 {
-                    string doubleClick = dataGridView1[0, ligne].Value.ToString();
-                    for (int i = 0; i < objetsDataGridView.Count; i++)
+                    int colonne = e.ColumnIndex;
+                    int ligne = e.RowIndex;
+                    if (e.RowIndex >= 0)
                     {
-                        if (objetsDataGridView[i].Nom == doubleClick)
+                        string doubleClick = dataGridView1[0, ligne].Value.ToString();
+                        for (int i = 0; i < objetsDataGridView.Count; i++)
                         {
-                            JsonResumeFilm jr = new JsonResumeFilm(objetsDataGridView[i].Id);
-                            ObjetsDataGridView odgv = jr.creationDObjet();
-                            AffichageResumeFilm ar = new AffichageResumeFilm(odgv);
-                            ar.ShowDialog();
+                            if (objetsDataGridView[i].Nom == doubleClick)
+                            {
+                                JsonResumeFilm jr = new JsonResumeFilm(objetsDataGridView[i].Id);
+                                ObjetsDataGridView odgv = jr.creationDObjet();
+                                AffichageResumeFilm ar = new AffichageResumeFilm(odgv);
+                                ar.ShowDialog();
+                            }
+                        }
+                    }
+                }
+                if (affichageSeries == true)
+                {
+                    int colonne = e.ColumnIndex;
+                    int ligne = e.RowIndex;
+                    if (e.RowIndex >= 0)
+                    {
+                        string doubleClick = dataGridView1[0, ligne].Value.ToString();
+                        for (int i = 0; i < objetsDataGridView.Count; i++)
+                        {
+                            if (objetsDataGridView[i].Nom == doubleClick)
+                            {
+                                JsonResumeSerie jrs = new JsonResumeSerie(objetsDataGridView[i].Id);
+                                ObjetsDataGridView odgv = jrs.CreationObjet();
+                                AffichageResumeSerie ars = new AffichageResumeSerie(odgv);
+                                ars.ShowDialog();
+                            }
                         }
                     }
                 }
             }
-            if (affichageSeries == true)
+            catch (Exception ex)
             {
-                int colonne = e.ColumnIndex;
-                int ligne = e.RowIndex;
-                if (e.RowIndex >= 0)
-                {
-                    string doubleClick = dataGridView1[0, ligne].Value.ToString();
-                    for (int i = 0; i < objetsDataGridView.Count; i++)
-                    {
-                        if (objetsDataGridView[i].Nom == doubleClick)
-                        {
-                            JsonResumeSerie jrs = new JsonResumeSerie(objetsDataGridView[i].Id);
-                            ObjetsDataGridView odgv = jrs.CreationObjet();
-                            AffichageResumeSerie ars = new AffichageResumeSerie(odgv);
-                            ars.ShowDialog();
-                        }
-                    }
-                }
+                MessageBox.Show(ex.Message);
+                EcritureFichierErreur(ex.Message, ex.StackTrace);
             }
             
         }
@@ -377,7 +388,6 @@ namespace VidéoThèque
                 dataGridView1.Columns[i].DefaultCellStyle = style;
                 dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-            //this.dataGridView1.ClearSelection();
         }
         /// <summary>
         /// Click sur le bouton favoris pour afficher une nouvelle fenetre
@@ -386,6 +396,17 @@ namespace VidéoThèque
         {
             AffichageFavoris af = new AffichageFavoris();
             af.ShowDialog();
+        }
+        /// <summary>
+        /// Ecriture des erreurs dans FichierErreurs.txt
+        /// </summary>
+        /// <param name="erreur">e.Message</param>
+        /// <param name="ligneErreur">e.StackTrace</param>
+        public static void EcritureFichierErreur(string erreur, string ligneErreur)
+        {
+            StreamWriter sw = new StreamWriter(@".\FichierErreurs.txt", true);
+            sw.WriteLine(DateTime.Now + "; " + erreur + "; " + ligneErreur);
+            sw.Close();
         }
     }
 }

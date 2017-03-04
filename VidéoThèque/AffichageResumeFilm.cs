@@ -50,6 +50,7 @@ namespace VidéoThèque
             catch (Exception)
             {
                 pictureBox1.Load(@".\Images\Image non trouvé.jpg");
+
             }
             labelAffichageTitre.Text = Odgv.Nom1;
             labelAffichageTitreOriginal.Text = Convert.ToString(Odgv.TitreOrigine);
