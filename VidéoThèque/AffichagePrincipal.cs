@@ -82,8 +82,11 @@ namespace VidéoThèque
         {
             try
             {
+                
                 BoutonTriParVote.Text = "Nombre de votes";
                 var json = new JsonFilm(annee, page, lienAPI);
+
+
                 objetsDataGridView = json.CreationObjets();
                 LabelNombreDePages.Text = page + "/" + objetsDataGridView[0].MaxPage;
                 LabelNombreDeResultats.Text = "Résultats : " + objetsDataGridView[0].NombreResultat;

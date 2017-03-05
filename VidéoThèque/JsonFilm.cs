@@ -5,11 +5,13 @@ using Newtonsoft.Json;
 
 namespace VidéoThèque
 {
+    
     /// <summary>
     ///     Exploitation des données Json des films
     /// </summary>
     internal class JsonFilm
     {
+        private RootObject1 ro;
         private string annee;
         private int page;
 
@@ -79,8 +81,6 @@ namespace VidéoThèque
 
         #region Objets Json
 
-        private readonly RootObject1 ro;
-
         public class Result
         {
             public string poster_path { get; set; }
@@ -98,10 +98,6 @@ namespace VidéoThèque
             public bool video { get; set; }
             public double vote_average { get; set; }
         }
-
-        /// <summary>
-        ///     Class principale
-        /// </summary>
         public class RootObject1
         {
             public int page { get; set; }
